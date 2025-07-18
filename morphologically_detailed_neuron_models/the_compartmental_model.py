@@ -10,7 +10,7 @@ cells = {}
 
 for i in range(3):
 
-    soma = h.Section(name='soma') 
+    soma = h.Section(name='soma')
     soma.L = soma.diam = 12.6157    # [um]
     soma.Ra = 100                   # Axial resistance [Ohm * cm]
     soma.cm = 1                     # Membrane capacitance [uF / cm^2]
@@ -27,14 +27,14 @@ for i in range(3):
     dend.cm = 1                     # Membrane capacitance [uF / cm^2]
     dend.diam = 1                   # [um]
     dend.insert('pas')              # Insert passive current in the dendrite
-    dend.g_pas = 0.001              # Passive conductance [S / cm2] 
+    dend.g_pas = 0.001              # Passive conductance [S / cm2]
     dend.e_pas = -65                # Leak reversal potential [mV]
-    dend.connect(soma(1)) 
-    
+    dend.connect(soma(1))
+
     cells[i] = {'soma': soma, 'dend': dend}
 
 syns    = [h.ExpSyn(cells[1]['dend'](0.5)), h.ExpSyn(cells[2]['dend'](0.5))]
-netcons = [h.NetCon(cells[0]['soma'](0.5)._ref_v, syns[0], sec=cells[0]['soma']), 
+netcons = [h.NetCon(cells[0]['soma'](0.5)._ref_v, syns[0], sec=cells[0]['soma']),
            h.NetCon(cells[1]['soma'](0.5)._ref_v, syns[1], sec=cells[1]['soma'])]
 
 for netcon in netcons:
@@ -57,7 +57,7 @@ stim_amp_array = [0.08]
 
 # Recording vectors
 
-t_vec = h.Vector() 
+t_vec = h.Vector()
 t_vec.record(h._ref_t)
 
 for cell in cells:
@@ -78,7 +78,7 @@ for i in np.flip(np.linspace(0, dend.L, 6)):
 # Simulation parameters
 
 simdur = 40
-h.tstop = simdur 
+h.tstop = simdur
 
 
 # run simulation
@@ -88,21 +88,21 @@ h.run()
 
 # Plot
 
-cmap = plt.get_cmap('Blues')   
+cmap = plt.get_cmap('Blues')
 colors = cmap(np.linspace(0, 1, len(dend_v_vec_array) * 2))
-plt.figure(figsize=(8, 4)) 
+plt.figure(figsize=(8, 4))
 
-plt.plot(t_vec, dend_v_vec_array[0], linewidth=3, color=colors[-1]) 
+plt.plot(t_vec, dend_v_vec_array[0], linewidth=3, color=colors[-1])
 for i, vec in enumerate(dend_v_vec_array[1:]):
-    plt.plot(t_vec, vec, color = colors[len(colors)-2-i]) 
+    plt.plot(t_vec, vec, color = colors[len(colors)-2-i])
 
 plt.plot(t_vec, cells[0]['soma_Vm'], label='soma @ cell 1', color='red', linewidth=3)
 plt.plot(t_vec, cells[1]['soma_Vm'], label='soma @ cell 2', color='green', linewidth=3)
 plt.plot(t_vec, cells[2]['soma_Vm'], label='soma @ cell 3', color='orange', linewidth=3)
 plt.title("Compartmental Model", fontsize=15)
-plt.xlabel('Time (ms)', fontsize=15) 
-plt.ylabel("Membrane Potential (mV)", fontsize=15) 
+plt.xlabel('Time (ms)', fontsize=15)
+plt.ylabel("Membrane Potential (mV)", fontsize=15)
 plt.legend()
 plt.show()
-    
+
 h("forall {delete_section()}")

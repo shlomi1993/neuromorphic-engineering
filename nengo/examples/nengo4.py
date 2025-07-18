@@ -2,7 +2,7 @@ from nengo import Network, Node, Ensemble, Connection
 
 model = Network()
 with model:
-	a = Ensemble(n_neurons=50, dimenstions=1, radius=10)
+	a = Ensemble(n_neurons=50, dimensions=1, radius=10)
 	stim = Node(0)
 	Connection(stim, a)
 

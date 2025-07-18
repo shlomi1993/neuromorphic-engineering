@@ -8,4 +8,3 @@ with model:
 	stim = nengo.Node([0, 0])
 	nengo.Connection(stim, a)
 
-	

@@ -33,17 +33,17 @@ def stop_learning(t):
 
 model = nengo.Network(label='Classical Conditioning')
 with model:
-    
+
     us_stim = nengo.Node(us_stim)
     us_stim_p = nengo.Probe(us_stim)
-    
+
     us = nengo.Ensemble(N, D)
     ur = nengo.Ensemble(N, D)
     us_p = nengo.Probe(us, synapse=0.1)
     ur_p = nengo.Probe(ur, synapse=0.1)
     nengo.Connection(us, ur)
     nengo.Connection(us_stim, us[:D])
-    
+
     cs_stim = nengo.Node(cs_stim)
     cs_stim_p = nengo.Probe(cs_stim)
 
@@ -66,7 +66,7 @@ with model:
     stop_learn = nengo.Node(stop_learning)
     stop_learn_p = nengo.Probe(stop_learn)
     nengo.Connection(stop_learn, error.neurons, transform=-10 * np.ones((N, 1)))
-    
+
 with nengo.Simulator(model) as sim:
     sim.run(15)
 

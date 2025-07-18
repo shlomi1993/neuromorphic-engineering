@@ -19,7 +19,7 @@ V_spike = 50 * 1e-3             # Spike voltage            [V]
 # Simulation parameters:
 T = np.arange(0, T + dt, dt)    # Time array
 V_m = np.ones(len(T)) * V_rest  # Membrane voltage array
-tau = R_m * C_m                 # Time constant 
+tau = R_m * C_m                 # Time constant
 spikes = []                     # Spikes timings
 
 # Define the stimulus:
@@ -37,8 +37,8 @@ for i, t in enumerate(T[:-1]):
 
 # Plot:
 plt.figure(figsize=(10, 5))
-plt.title('Leaky Integrate-and-Fire Model', fontsize=15) 
-plt.ylabel('Membrane Potential (mV)', fontsize=15) 
+plt.title('Leaky Integrate-and-Fire Model', fontsize=15)
+plt.ylabel('Membrane Potential (mV)', fontsize=15)
 plt.xlabel('Time (msec)', fontsize=15)
 plt.plot(T * 1e3, V_m * 1e3, linewidth=5, label='V_m')
 plt.plot(T * 1e3, 100 / max(I) * I, label='Stimuli (Scaled)', color='sandybrown', linewidth=2)

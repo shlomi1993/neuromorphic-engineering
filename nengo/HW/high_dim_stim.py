@@ -11,7 +11,7 @@ with model:
     ens2 = nengo.Ensemble(n_neurons=5, dimensions=2)  # To attempt to represent 2D input using sufficient neurons
     nengo.Connection(stim, ens1)
     nengo.Connection(stim, ens2)
-    
+
     probe_stim = nengo.Probe(stim, synapse=tau_synapse)
     probe1 = nengo.Probe(ens1, synapse=tau_synapse)
     probe2 = nengo.Probe(ens2, synapse=tau_synapse)

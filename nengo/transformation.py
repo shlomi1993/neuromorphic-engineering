@@ -13,10 +13,10 @@ with model:
     stim = nengo.Node(lambda t: 0.5 * np.sin(10 * t))
     ens_a = nengo.Ensemble(n_neurons=100, dimensions=1)
     ens_b = nengo.Ensemble(n_neurons=100, dimensions=1)
-    
+
     nengo.Connection(stim, ens_a)
     nengo.Connection(ens_a, ens_b, transform=2)  # function=lambda x: 2*x)
-    
+
     stim_p = nengo.Probe(stim)
     ens_a_p = nengo.Probe(ens_a, synapse=0.01)
     ens_b_p = nengo.Probe(ens_b, synapse=0.01)
@@ -49,10 +49,10 @@ with model:
     stim = nengo.Node(lambda t: 0.5 * np.sin(10 * t))
     ens_a = nengo.Ensemble(n_neurons=100, dimensions=1)
     ens_b = nengo.Ensemble(n_neurons=100, dimensions=1)
-    
+
     nengo.Connection(stim, ens_a)
     nengo.Connection(ens_a, ens_b, function=lambda x: x ** 2)
-    
+
     stim_p = nengo.Probe(stim)
     ens_a_p = nengo.Probe(ens_a, synapse=0.01)
     ens_b_p = nengo.Probe(ens_b, synapse=0.01)
@@ -84,16 +84,16 @@ model = nengo.Network()
 with model:
     stim_a = nengo.Node(lambda t: 0.5 * np.sin(10 * t))
     stim_b = nengo.Node(lambda t: 0.5 * np.sin(5 * t))
-    
+
     ens_a = nengo.Ensemble(n_neurons=100, dimensions=1)
     ens_b = nengo.Ensemble(n_neurons=100, dimensions=1)
     ens_c = nengo.Ensemble(n_neurons=100, dimensions=1)
-    
+
     nengo.Connection(stim_a, ens_a)
     nengo.Connection(stim_b, ens_b)
     nengo.Connection(ens_a, ens_c)
     nengo.Connection(ens_b, ens_c)
-    
+
     stim_a_p = nengo.Probe(stim_a)
     stim_b_p = nengo.Probe(stim_b)
     ens_a_p = nengo.Probe(ens_a, synapse=0.01)
@@ -124,16 +124,16 @@ model = nengo.Network()
 with model:
     stim_a = nengo.Node([0.3, 0.5])
     stim_b = nengo.Node([0.3, -0.5])
-    
+
     ens_a = nengo.Ensemble(n_neurons=100, dimensions=2)
     ens_b = nengo.Ensemble(n_neurons=100, dimensions=2)
     ens_c = nengo.Ensemble(n_neurons=100, dimensions=2)
-    
+
     nengo.Connection(stim_a, ens_a)
     nengo.Connection(stim_b, ens_b)
     nengo.Connection(ens_a, ens_c)
     nengo.Connection(ens_b, ens_c)
-    
+
     stim_a_p = nengo.Probe(stim_a)
     stim_b_p = nengo.Probe(stim_b)
     ens_a_p = nengo.Probe(ens_a, synapse=0.02)
@@ -163,14 +163,14 @@ model = nengo.Network()
 with model:
     stim_a = nengo.Node(lambda t: 0.5 * np.sin(10 * t))
     stim_b = nengo.Node(lambda t: 0.5 * np.sin(5 * t))
-    
+
     ens_a = nengo.Ensemble(n_neurons=200, dimensions=2)
     ens_b = nengo.Ensemble(n_neurons=100, dimensions=1)
-    
+
     nengo.Connection(stim_a, ens_a[0])
     nengo.Connection(stim_b, ens_a[1])
     nengo.Connection(ens_a, ens_b, function=lambda x: x[0] * x[1])
-    
+
     stim_a_p = nengo.Probe(stim_a)
     stim_b_p = nengo.Probe(stim_b)
     ens_a_p = nengo.Probe(ens_a, synapse=0.01)
@@ -200,19 +200,19 @@ model = nengo.Network()
 with model:
     stim_a = nengo.Node(lambda t: 0.5 * np.sin(10 * t))
     stim_b = nengo.Node(lambda t: 0 if t < 0.5 else 1)
-    
+
     ens_a = nengo.Ensemble(n_neurons=300, dimensions=2, radius=np.sqrt(2))
     ens_b = nengo.Ensemble(n_neurons=100, dimensions=1)
-    
+
     nengo.Connection(stim_a, ens_a[0])
     nengo.Connection(stim_b, ens_a[1])
     nengo.Connection(ens_a, ens_b, function=lambda x: x[0] * x[1])
-    
+
     stim_a_p = nengo.Probe(stim_a)
     stim_b_p = nengo.Probe(stim_b)
     ens_a_p = nengo.Probe(ens_a, synapse=0.01)
     ens_b_p = nengo.Probe(ens_b, synapse=.01)
-   
+
 sim = nengo.Simulator(model)
 sim.run(T)
 

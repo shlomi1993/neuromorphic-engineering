@@ -27,7 +27,6 @@ for func_name, func in functions:
             nengo.Connection(ensemble, output_node, function=func)
             input_probe = nengo.Probe(input_node, synapse=tau_synapse)
             output_probe = nengo.Probe(output_node, synapse=tau_synapse)
-            
 
         # Model simulation
         with nengo.Simulator(model) as sim:

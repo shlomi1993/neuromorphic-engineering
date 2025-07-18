@@ -34,21 +34,21 @@ for a, b, c, d in zip(A, B, C, D):
     u  = b * v
     spikes = []
     for i, stimulus_value in enumerate(stimulus):
-        v += dt * (0.04 * v ** 2 + x * v + y - u + stimulus_value) 
+        v += dt * (0.04 * v ** 2 + x * v + y - u + stimulus_value)
         u += dt * a * (b * v - u)
         if v > 30:
             trace[0, i] = 30
-            v = c 
+            v = c
             u += d
         else:
-            trace[0, i] = v 
+            trace[0, i] = v
             trace[1, i] = u
 
 
     # Plot:
     plt.figure(figsize=(10, 5))
-    plt.title(f'Izhikevich Model: {titles}', fontsize=15) 
-    plt.ylabel('Membrane Potential (mV)', fontsize=15) 
+    plt.title(f'Izhikevich Model: {titles}', fontsize=15)
+    plt.ylabel('Membrane Potential (mV)', fontsize=15)
     plt.xlabel('Time (msec)', fontsize=15)
     plt.plot(time, trace[0], linewidth=2, label='Vm')
     plt.plot(time, trace[1], linewidth=2, label='Recovery', color='green')

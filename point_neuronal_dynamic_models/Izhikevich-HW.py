@@ -39,7 +39,7 @@ class IzhikevichModel:
     @property
     def times(self):
         return self._times
-    
+
     @property
     def dt(self):
         return self._dt
@@ -97,8 +97,8 @@ class IzhikevichModel:
             representing the values of membrane potential and the second row representing the values of the recovery variable.
         """
         plt.figure(figsize=(10, 5))
-        plt.title(f'Izhikevich Model: {title}', fontsize=15) 
-        plt.ylabel('Membrane Potential (mV)', fontsize=15) 
+        plt.title(f'Izhikevich Model: {title}', fontsize=15)
+        plt.ylabel('Membrane Potential (mV)', fontsize=15)
         plt.xlabel('Time (msec)', fontsize=15)
         plt.plot(self.times[self.start_idx:], trace[0][self.start_idx:], linewidth=2, label='Vm')
         plt.plot(self.times[self.start_idx:], trace[1][self.start_idx:], linewidth=2, label='Recovery', color='green')

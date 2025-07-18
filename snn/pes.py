@@ -8,24 +8,24 @@ import nengo
 model = nengo.Network('Learn a Communication Channel')
 with model:
     stim = nengo.Node(output=nengo.processes.WhiteSignal(10, high=5, rms=0.5))
-    
+
     pre = nengo.Ensemble(n_neurons=60, dimensions=1)
     post = nengo.Ensemble(n_neurons=60, dimensions=1)
-    
+
     nengo.Connection(stim, pre)
     conn = nengo.Connection(pre, post, function=lambda x: np.random.random())
-    
+
     inp_p = nengo.Probe(stim)
     pre_p = nengo.Probe(pre, synapse=0.01)
     post_p = nengo.Probe(post, synapse=0.01)
-    
+
     error = nengo.Ensemble(n_neurons=60, dimensions=1)
     error_p = nengo.Probe(error, synapse=0.03)
-    
+
     nengo.Connection(post, error)
     nengo.Connection(pre, error, transform=-1)  # Learn simple communication line
     conn.learning_rule_type = nengo.PES()
-    learn_conn = nengo.Connection(error, conn.learning_rule) 
+    learn_conn = nengo.Connection(error, conn.learning_rule)
 
 with nengo.Simulator(model) as sim:
     sim.run(10.0)

@@ -24,8 +24,8 @@ stim = np.zeros(len(time))
 for i,t in enumerate(stim):
     if i > 40:
         stim[i] = 10
-        
-        
+
+
 trace = np.zeros((2,len(time))) # Tracing du and dv
 
 for exp in range(len(a)):
@@ -33,19 +33,19 @@ for exp in range(len(a)):
     u  = b[exp]*v
     spikes = []
     for i, j in enumerate(stim):
-        v += dt * (0.04*v**2 + x*v + y - u + stim[i]) 
+        v += dt * (0.04*v**2 + x*v + y - u + stim[i])
         u += dt * a[exp]*(b[exp]*v-u)
         if v > 30:
             trace[0,i] = 30
-            v = c[exp] 
+            v = c[exp]
             u += d[exp]
         else:
-            trace[0,i] = v 
+            trace[0,i] = v
             trace[1,i] = u
-            
+
     plt.figure(figsize=(10,5))
-    plt.title('Izhikevich Model: {}'.format(titles[exp]), fontsize=15) 
-    plt.ylabel('Membrane Potential (mV)', fontsize=15) 
+    plt.title('Izhikevich Model: {}'.format(titles[exp]), fontsize=15)
+    plt.ylabel('Membrane Potential (mV)', fontsize=15)
     plt.xlabel('Time (msec)', fontsize=15)
     plt.plot(time, trace[0], linewidth=2, label = 'Vm')
     plt.plot(time, trace[1], linewidth=2, label = 'Recovery', color='green')

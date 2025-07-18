@@ -16,7 +16,7 @@ I = np.array([1e-04] * len(T))
 
 # Plot current dynamic
 plt.figure(figsize=(10, 5))
-plt.title(f'Current Dynamic - Intensity over time', fontsize=15) 
+plt.title(f'Current Dynamic - Intensity over time', fontsize=15)
 plt.xlabel('Time (msec)', fontsize=15)
 plt.ylabel('Current Intensity (uA)', fontsize=15)
 plt.plot(T * 1e+3, I * 1e+6, color='blue', linewidth=2)
@@ -44,10 +44,10 @@ for V_th_mV in [-70, -30, 10]:
                 spikes.append(t * 1e3)
                 V_m[i] = V_spike
                 t_init = t + tau_ref
-    
+
         # Calculate frequency as 1 divided by time-cycle, where the time-cycle is defined as the time between spikes]
         freq = 1 / (spikes[-1] - spikes[-2]) if len(spikes) > 1 else 0
-        F.append(freq) 
+        F.append(freq)
 
         msg = f"step={i}, t={t * 1e+3} ms, f={freq} Hz, I(t)={I[i] * 1e+6} uA, u_inf={(V_rest + R_m * I[i])} V, u_now={V_m[i]} V"
         if spiked:
@@ -57,8 +57,8 @@ for V_th_mV in [-70, -30, 10]:
 
     # Plot simulation results
     plt.figure(figsize=(10, 5))
-    plt.title(f'Leaky Integrate-and-Fire Model (V_th={V_th} V)', fontsize=15) 
-    plt.ylabel('Membrane Potential (mV)', fontsize=15) 
+    plt.title(f'Leaky Integrate-and-Fire Model (V_th={V_th} V)', fontsize=15)
+    plt.ylabel('Membrane Potential (mV)', fontsize=15)
     plt.xlabel('Time (msec)', fontsize=15)
     plt.plot(T * 1e3, V_m * 1e3, linewidth=5, label='V_m')
     plt.plot(T * 1e3, 100 / max(I) * I, label='Stimuli (Scaled)', color='sandybrown', linewidth=2)

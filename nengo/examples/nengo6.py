@@ -6,10 +6,10 @@ Vector = List[float]
 model = Network()
 with model:
 	stim = Node([0, 0])
-	a = Ensemble(n_neurons=100, dimenstions=2, radius=1.5)
+	a = Ensemble(n_neurons=100, dimensions=2, radius=1.5)
 	Connection(stim, a)
 
-	b = Ensemble(n_neurons=50, dimenstions=1)
+	b = Ensemble(n_neurons=50, dimensions=1)
 
 	def product(x: Vector) -> float:
 		return x[0] * x[1]
@@ -20,10 +20,10 @@ with model:
 # model = Network()
 # with model:
 # 	stim = Node([0, 0])
-# 	a = Ensemble(n_neurons=100, dimenstions=2, radius=1.5, neuron_type=Direct())  # Debbuging neuron type
+# 	a = Ensemble(n_neurons=100, dimensions=2, radius=1.5, neuron_type=Direct())  # Debbuging neuron type
 # 	Connection(stim, a)
 
-# 	b = Ensemble(n_neurons=50, dimenstions=1)
+# 	b = Ensemble(n_neurons=50, dimensions=1)
 
 # 	def custom_func(x: Vector) -> float:
 # 		return np.sin(x[0]) * np.sin(x[1])

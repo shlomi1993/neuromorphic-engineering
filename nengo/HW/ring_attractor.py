@@ -30,7 +30,7 @@ with model:
     input_node = nengo.Node(stim_func)
 
     # Represents a 3D state using 3000 neurons to achieve accuracy at a tolerable computational cost
-    ensemble = nengo.Ensemble(n_neurons=3000, dimensions=3, radius=2.0)  
+    ensemble = nengo.Ensemble(n_neurons=3000, dimensions=3, radius=2.0)
 
     # Connect the input node to the ensemble, and the ensemble to itself using the ring attractor function
     nengo.Connection(input_node, ensemble, synapse=tau_synapse)

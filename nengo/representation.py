@@ -21,9 +21,9 @@ plt.plot(J, n_RL.rates(J, gain=10, bias=0))
 plt.xlabel('I')
 plt.ylabel('$a$ (Hz)')
 plt.show()
-plt.plot(J, n_LIF.rates(J, gain=1, bias=0)) 
+plt.plot(J, n_LIF.rates(J, gain=1, bias=0))
 plt.xlabel('I')
-plt.ylabel('a (Hz)'); 
+plt.ylabel('a (Hz)')
 plt.show()
 
 
@@ -41,7 +41,7 @@ with model:
 with nengo.Simulator(model) as sim:
     sim.run(1)
 
-t = sim.trange()     
+t = sim.trange()
 plt.figure(figsize=(10, 4))
 plt.plot(t, sim.data[stim_p], label='stimulus', color='r', linewidth=4)
 plt.ax = plt.gca()
@@ -89,7 +89,7 @@ model = nengo.Network(label='Decoding Neurons')
 with model:
     stim = nengo.Node(lambda t: np.sin(10 * t))
     ens = nengo.Ensemble(n_neurons=50, dimensions=1, max_rates=Uniform(100, 200))
-    nengo.Connection(stim, ens)   
+    nengo.Connection(stim, ens)
     stim_p = nengo.Probe(stim)
     spikes_p = nengo.Probe(ens.neurons, 'output')
 
@@ -242,7 +242,7 @@ fspikes1 = np.convolve(sim.data[spikes_p][:,0], h, mode='same')
 fspikes2 = np.convolve(sim.data[spikes_p][:,1], h, mode='same')
 
 A = np.array([fspikes1, fspikes2]).T
-d = sim.data[connection].weights.T  
+d = sim.data[connection].weights.T
 xhat = np.dot(A, d)
 t = sim.trange()
 
@@ -268,13 +268,13 @@ plt.show()
 
 model = nengo.Network(label='Decoding Neurons')
 with model:
-    stim = nengo.Node(lambda t: np.sin(10 * t))  
+    stim = nengo.Node(lambda t: np.sin(10 * t))
     ens = nengo.Ensemble(n_neurons=50, dimensions=1, max_rates=Uniform(100, 200))
     nengo.Connection(stim, ens)
     stim_p = nengo.Probe(stim)
     dec_p = nengo.Probe(ens, synapse=0.05)
     spikes_p = nengo.Probe(ens.neurons, 'output')
-    
+
 with nengo.Simulator(model) as sim:
     sim.run(1)
 
@@ -295,9 +295,9 @@ plt.show()
 
 model = nengo.Network(label='Neurons')
 with model:
-    neurons = nengo.Ensemble(n_neurons=50, dimensions=1) 
+    neurons = nengo.Ensemble(n_neurons=50, dimensions=1)
     connection = nengo.Connection(neurons, neurons)  # This is just to generate the decoders
-    
+
 sim = nengo.Simulator(model)
 
 d = sim.data[connection].weights.T
@@ -326,7 +326,7 @@ model = nengo.Network(label='Neurons')
 with model:
     neurons = nengo.Ensemble(n_neurons=50, dimensions=1, intercepts=Uniform(-.3,.3)) 
     connection = nengo.Connection(neurons, neurons) #This is just to generate the decoders
-    
+
 sim = nengo.Simulator(model)
 
 d = sim.data[connection].weights.T
@@ -355,7 +355,7 @@ model = nengo.Network(label='Neurons')
 with model:
     neurons = nengo.Ensemble(n_neurons=50, dimensions=1, intercepts = Choice([-0.2])) 
     connection = nengo.Connection(neurons, neurons) #This is just to generate the decoders
-    
+
 sim = nengo.Simulator(model)
 
 d = sim.data[connection].weights.T
@@ -382,9 +382,9 @@ plt.show()
 
 model = nengo.Network(label='Neurons')
 with model:
-    neurons = nengo.Ensemble(n_neurons=1000, dimensions=1) 
+    neurons = nengo.Ensemble(n_neurons=1000, dimensions=1)
     connection = nengo.Connection(neurons, neurons)  # This is just to generate the decoders
-    
+
 sim = nengo.Simulator(model)
 
 d = sim.data[connection].weights.T
@@ -410,7 +410,7 @@ model = nengo.Network(label='Neurons')
 with model:
     neurons = nengo.Ensemble(n_neurons=1000, dimensions=1, intercepts=Uniform(-.3,.3)) 
     connection = nengo.Connection(neurons, neurons) #This is just to generate the decoders
-    
+
 sim = nengo.Simulator(model)
 
 d = sim.data[connection].weights.T
@@ -423,7 +423,7 @@ chi = np.dot(A, U)
 
 for i in range(5):
     plt.plot(x, chi[:,i], label='$\chi_%d$=%1.3g'%(i, S1[i]), linewidth=3)
-plt.legend(loc='best')    
+plt.legend(loc='best')
 plt.figure()
 plt.xlabel('neuron')
 plt.loglog(S1, linewidth=4, label='intercepts=Uniform(-.3,.3)')
@@ -453,15 +453,15 @@ plt.show()
 
 model = nengo.Network(label='Neurons', seed=2)
 with model:
-    neurons = nengo.Ensemble(n_neurons=500, dimensions=2) 
+    neurons = nengo.Ensemble(n_neurons=500, dimensions=2)
     connection = nengo.Connection(neurons, neurons)  # This is just to generate the decoders
-    
+
 sim = nengo.Simulator(model)
 
 d = sim.data[connection].weights.T
 x, A = tuning_curves(neurons, sim)
 A = np.reshape(A, (2500, 500))
-               
+
 Gamma = np.dot(A.T, A)
 U, S, V = np.linalg.svd(Gamma)
 chi = np.dot(A, U)
@@ -486,7 +486,7 @@ for index in [1, 3, 5, 7]:  #W hat's 0? 3, 4, 5 (same/diff signs, cross)? Higher
 
 def analytic_proportion(x, d):
     flip = False
-    if x < 0: 
+    if x < 0:
         x = -x
         flip = True
     value = 0 if x >= 1.0 else 0.5 * scipy.special.betainc((d + 1) / 2.0, 0.5, 1 - x ** 2)
@@ -495,7 +495,6 @@ def analytic_proportion(x, d):
     return value
 
 def plot_intercept_distribution(ens):
-    
     pts = ens.eval_points.sample(n=1000, d=ens.dimensions)
     model = nengo.Network()
     model.ensembles.append(ens)

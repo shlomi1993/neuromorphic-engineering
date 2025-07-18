@@ -24,7 +24,7 @@ with nengo.Network(seed=0) as net:
     # This is an optimization to improve the training speed, since we won't require stateful behavior in this example
     nengo_dl.configure_settings(stateful=False)
 
-    # The input node 
+    # The input node
     inp = nengo.Node(np.zeros(28 * 28))
 
     # Add the first convolutional layer
@@ -84,7 +84,7 @@ else:
 # Evaluating after training
 sim.compile(loss={out_p_filt: classification_accuracy})
 print("Accuracy after training:", sim.evaluate(test_images, {out_p_filt: test_labels}, verbose=0)["loss"])
-## PRINTED: Accuracy after training: 0.9869999885559082 0:00:00 
+## PRINTED: Accuracy after training: 0.9869999885559082 0:00:00
 
 # Plot
 data = sim.predict(test_images[:minibatch_size])

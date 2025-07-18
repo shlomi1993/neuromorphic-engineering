@@ -13,13 +13,13 @@ with model:
     ens2 = nengo.Ensemble(n_neurons=50, dimensions=1)  # To attempt to represent f(x)=x^2 using sufficient neurons
     nengo.Connection(stim, ens1)
     nengo.Connection(stim, ens2)
-    
+
     # Connecting ensembles to output nodes with nonlinear function
     out1 = nengo.Node(size_in=1)
     out2 = nengo.Node(size_in=1)
     nengo.Connection(ens1, out1, function=nonlinear)
     nengo.Connection(ens2, out2, function=nonlinear)
-    
+
     # Probes to record data
     probe_stim = nengo.Probe(stim)
     probe1 = nengo.Probe(out1, synapse=tau_synapse)

@@ -11,10 +11,10 @@ with model:
     ens_a = nengo.Ensemble(n_neurons=100, dimensions=1)
     ens_b = nengo.Ensemble(n_neurons=100, dimensions=1)
     ens_c = nengo.Ensemble(n_neurons=100, dimensions=1)
-    
+
     def feedback(x):
         return x + 1
-    
+
     nengo.Connection(ens_a, ens_a, function=feedback, synapse=0.1)
     nengo.Connection(ens_b, ens_b, function=feedback, synapse=0.2)
     nengo.Connection(ens_c, ens_c, function=feedback, synapse=0.3)
@@ -41,22 +41,22 @@ plt.show()
 
 with model:
     stim = nengo.Node(Piecewise({0: 1, 0.2: -1, 0.4: 0}))
-    
+
     def feedback(x):
         return -x
-    
+
     ens_a = nengo.Ensemble(n_neurons=100, dimensions=1)
     ens_b = nengo.Ensemble(n_neurons=100, dimensions=1)
     ens_c = nengo.Ensemble(n_neurons=100, dimensions=1)
-    
+
     nengo.Connection(stim, ens_a)
     nengo.Connection(stim, ens_b)
     nengo.Connection(stim, ens_c)
-    
+
     nengo.Connection(ens_a, ens_a, function=feedback, synapse=0.1)
     nengo.Connection(ens_b, ens_b, function=feedback, synapse=0.2)
     nengo.Connection(ens_c, ens_c, function=feedback, synapse=0.3)
-    
+
     ens_a_p = nengo.Probe(ens_a, synapse=0.01)
     ens_b_p = nengo.Probe(ens_b, synapse=0.01)
     ens_c_p = nengo.Probe(ens_c, synapse=0.01)
@@ -80,7 +80,7 @@ plt.show()
 
 with model:
     stim = nengo.Node(Piecewise({0.1: 0.2, 0.2: 0.4, 0.6: 0}))
-    
+
     def feedback(x):
         return x * x
 
@@ -170,7 +170,7 @@ with model:
     stim = nengo.Node(Piecewise({0.3: 1, 0.6: 0}))
     velocity = nengo.Ensemble(n_neurons=100, dimensions=1)
     position = nengo.Ensemble(n_neurons=200, dimensions=1)
-    
+
     def feedback(x):
         return (-tau / tau_c + 1) * x
 
@@ -203,14 +203,14 @@ model = nengo.Network('Controlled integrator', seed=1)
 with model:
     vel = nengo.Node(Piecewise({.2:1.5, .5:0}))
     dec = nengo.Node(Piecewise({.7:.2, .9:0}))
-    
+
     velocity = nengo.Ensemble(n_neurons=100, dimensions=1)
     decay = nengo.Ensemble(n_neurons=100, dimensions=1)
     position = nengo.Ensemble(n_neurons=400, dimensions=2)
-    
+
     def feedback(x):
         return -x[1] * x[0] + x[0], 0
-    
+
     nengo.Connection(vel, velocity)
     nengo.Connection(dec, decay)
 
@@ -241,16 +241,16 @@ model = nengo.Network('Oscillator')
 with model:
     stim = nengo.Node(lambda t: [0.5, 0.5] if t < 0.02 else [0, 0])
     osc = nengo.Ensemble(n_neurons=200, dimensions=2)
-    
+
     def feedback(x):
         return x[0] + freq * x[1], -freq * x[0] + x[1]
-    
+
     nengo.Connection(osc, osc, function=feedback, synapse=.01)
     nengo.Connection(stim, osc)
-    
+
     stim_p = nengo.Probe(stim)
     osc_p = nengo.Probe(osc, synapse=0.01)
-    
+
 with nengo.Simulator(model) as sim:
     sim.run(.5)
 
@@ -260,7 +260,7 @@ plt.subplot(1, 2, 1)
 plt.plot(t, sim.data[osc_p])
 plt.plot(t, sim.data[stim_p], 'r', label = 'stim', linewidth=4)
 plt.xlabel('Time (s)')
-plt.ylabel('State value')       
+plt.ylabel('State value')
 plt.subplot(1, 2, 2)
 plt.plot(sim.data[osc_p][:,0],sim.data[osc_p][:,1])
 plt.xlabel('$x_0$')
@@ -283,7 +283,7 @@ with model:
     nengo.Connection(osc, osc, function=feedback, synapse=0.01)
     nengo.Connection(stim, osc[0:2])
     nengo.Connection(freq_ctrl, osc[2])
-    
+
     stim_p = nengo.Probe(stim)
     osc_p = nengo.Probe(osc, synapse=.01)
 
@@ -296,7 +296,7 @@ plt.subplot(1, 2, 1)
 plt.plot(t, sim.data[osc_p])
 plt.plot(t, sim.data[stim_p], 'r', label = 'stim', linewidth=4)
 plt.xlabel('Time (s)')
-plt.ylabel('State value')       
+plt.ylabel('State value')
 plt.subplot(1,2,2)
 plt.plot(sim.data[osc_p][:,0],sim.data[osc_p][:,1])
 plt.xlabel('$x_0$')
@@ -311,18 +311,18 @@ model = nengo.Network(label='Oscillator')
 with model:
     stim = nengo.Node(lambda t: [.5, .5] if t < 0.01 else [0, 0])
     osc = nengo.Ensemble(n_neurons=2000, dimensions=2)
-    
+
     def feedback(x):
         p1 = 0.5
         p2 = 0.8
         return [x[0] - (x[0] - p1), x[1] - (x[1] - p2)]
-    
+
     nengo.Connection(osc, osc, function=feedback, synapse=0.01)
     nengo.Connection(stim, osc)
-    
+
     stim_p = nengo.Probe(stim)
     osc_p = nengo.Probe(osc, synapse=0.01)
-    
+
 with nengo.Simulator(model) as sim:
     sim.run(0.5)
 
@@ -360,7 +360,7 @@ with model:
     stim_p = nengo.Probe(stim)
     neurons_p1 = nengo.Probe(neurons1, synapse=0.01)
     neurons_p2 = nengo.Probe(neurons2, synapse=0.01)
-    
+
 sim = nengo.Simulator(model)
 sim.run(4)
 
@@ -393,13 +393,13 @@ model = nengo.Network()
 with model:
     stim = nengo.Node(Piecewise({0.5: [1, 0], 1: [0, 0], 2: [0, -1], 2.5: [0, 0]}))
     neurons = nengo.networks.EnsembleArray(n_neurons=N, n_ensembles=2, seed=6)
-    
+
     nengo.Connection(stim, neurons.input, transform=tau, synapse=tau)
     nengo.Connection(neurons.output, neurons.input, synapse=tau)
 
     stim_p = nengo.Probe(stim)
     neurons_p = nengo.Probe(neurons.output, synapse=0.01)
-    
+
 with nengo.Simulator(model) as sim:
     sim.run(4)
 
@@ -418,7 +418,7 @@ model = nengo.Network(label='Lorenz Attractor', seed=3)
 with model:
     x = nengo.Ensemble(n_neurons=600, dimensions=3, radius=30)
     synapse = 0.1
-    
+
     def lorenz(x):
         sigma = 10
         beta = 8.0 / 3
@@ -429,11 +429,11 @@ with model:
         return [dx0 * synapse + x[0],
                 dx1 * synapse + x[1],
                 dx2 * synapse + x[2]]
-    
+
     nengo.Connection(x, x, synapse=synapse, function=lorenz)
-    
+
     lorenz_p = nengo.Probe(x, synapse=0.01)
-    
+
 with nengo.Simulator(model) as sim:
     sim.run(14)
 

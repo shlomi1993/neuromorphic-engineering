@@ -159,9 +159,9 @@ class HhModel:
             I_K[i] = self.I_K
             I_leak[i] = self.I_leak
             I_sum[i] = self.I_sum
-            
+
         return HhModelResults(times, stimuli, V_m, n, m, h, I_Na, I_K, I_leak, I_sum)
-        
+
 
 def main():
     to_file = len(sys.argv) > 1 and sys.argv[1] == '--savefig'

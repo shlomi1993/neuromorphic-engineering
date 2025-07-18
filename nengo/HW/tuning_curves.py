@@ -13,9 +13,9 @@ plt.rc('font', size=14, weight='bold')
 # Rectified linear and NEF LIF neurons
 J = np.linspace(-1, 10, 100)
 plt.figure(figsize=(8, 6))
-plt.plot(J, nengo.neurons.LIFRate(tau_rc=0.02, tau_ref=0.002).rates(J, gain=1, bias=0)) 
+plt.plot(J, nengo.neurons.LIFRate(tau_rc=0.02, tau_ref=0.002).rates(J, gain=1, bias=0))
 plt.xlabel('I')
-plt.ylabel('a (Hz)'); 
+plt.ylabel('a (Hz)')
 plt.show()
 
 
@@ -27,7 +27,7 @@ with model:
     ens2 = nengo.Ensemble(n_neurons=50, dimensions=1, max_rates=Uniform(100, 200))
     nengo.Connection(stim, ens1)
     nengo.Connection(stim, ens2)
-    
+
     probe_stim = nengo.Probe(stim)
     probe1 = nengo.Probe(ens1.neurons, 'output')
     probe2 = nengo.Probe(ens2.neurons, 'output')

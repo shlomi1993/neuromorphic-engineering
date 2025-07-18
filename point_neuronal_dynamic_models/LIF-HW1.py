@@ -43,14 +43,14 @@ for C_m in [10 * 1e-6, 20 * 1e-6, 30 * 1e-6]:   # Testing different tau values b
                     spikes.append(t * 1e+3)
                     V_m[i] = V_spike
                     t_init = t + tau_ref
-        
+
         # Calculate spike frequency
         a = calc_spike_frequency(spikes)        # As 1 divided time-cycle  [Hz]
         F.append(a)
 
     # Plot simulation results
     plt.figure(figsize=(10, 5))
-    plt.title(f'Leaky Integrate-and-Fire Model (tau={tau:.2f})', fontsize=15) 
+    plt.title(f'Leaky Integrate-and-Fire Model (tau={tau:.2f})', fontsize=15)
     plt.xlabel('Stimulation Current Intensity (mA)', fontsize=15)
     plt.ylabel('Spike Frequency (Hz)', fontsize=15)
     plt.plot(stimuli * 1e+3, F, color='sandybrown', linewidth=2)
