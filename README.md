@@ -383,9 +383,11 @@ NEF, implemented via Nengo, provides a powerful high-level toolkit for building 
 </details>
 
 <details>
-<summary>Project Structure </summary>
+<summary>Project Implementation </summary>
 
-## Project Structure
+## Project Implementation
+
+### Project Structure
 
 ```
 neuromorphic-engineering/
