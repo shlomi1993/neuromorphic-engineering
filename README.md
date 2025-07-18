@@ -124,89 +124,79 @@ The Leaky Integrate-and-Fire (LIF) model is an electrical-mathematical model tha
 
 The current conservation:
 
-```math
-I(t) = I_R(t) + I_C(t)
-```
+$I(t)=I_R(t) + I_C(t)$
 
 Leads to the model equation:
 
-```math
-τ · dV(t)/dt = R · I(t) - V(t)
-```
+$τ · dV(t)/dt=R · I(t) - V(t)$
 
 Where:
-- $τ$ is the membrane time constant, defined by $τ = RC$.
+- $τ$ is the membrane time constant, defined by $τ=RC$.
 - $V(t)$ is the membrane potential.
 
 Using the iterative method:
 
-```math
-u_∞(i) = u_rest + R · I(i) u(i+1) = u_∞ + (u(i) - u_∞) · e^(-dt/τ)
-```
+$u_∞(i)=u_{rest} + R · I(i) u(i+1)=u_∞ + (u(i) - u_∞) · e^(-dt/τ)$
 
 #### Simulation Parameters:
-- $u_rest = -70 mV$
-- $V_th = -40 mV$
-- $R = 1 kΩ$
-- $dt = 0.1 ms$
-- $T = 50 ms$
+- $u_{rest}=-70 mV$
+- $V_{th}=-40 mV$
+- $R=1 kΩ$
+- $dt=0.1 ms$
+- $T=50 ms$
 
 We vary the current:
 
-```math
-I(t_i) = dI · i, where dI = 0.5 µA
-```
+$I(t_i)=dI · i$ where $dI=0.5 µA$
 
 ##### Observations for Different $τ$ Values:
 
-$τ = 0.01$: First spike occurs at $~94.5 µA$, initial firing rate $≈ 0.18 Hz$
+$τ=0.01$: First spike occurs at $~94.5 µA$, initial firing rate $≈ 0.18 Hz$
 <p align="center"><img width="740" height="408" alt="image" src="https://github.com/user-attachments/assets/f8fb2c2c-51c6-420d-b0be-602f86dd5341" /></p>
 
-$τ = 0.02$: Shift in the curve, first spike at $~126.5 µA$, frequency $≈ 0.1351 Hz$
+$τ=0.02$: Shift in the curve, first spike at $~126.5 µA$, frequency $≈ 0.1351 Hz$
 <p align="center"><img width="736" height="403" alt="image" src="https://github.com/user-attachments/assets/d485cc79-7720-4691-a55a-57120a993d13" /></p>
 
-$τ = 0.03$: First spike at $~151 µA$, frequency $≈ 0.1124 Hz$
+$τ=0.03$: First spike at $~151 µA$, frequency $≈ 0.1124 Hz$
 <p align="center"><img width="740" height="402" alt="image" src="https://github.com/user-attachments/assets/1dcc2e0a-d99b-45c6-a1fa-8c118d23145b" /></p>
 
 Larger $τ$ values result in lower firing frequencies for the same current due to slower membrane potential buildup.
 
 #### V-T Curves for Different Thresholds
 
-Flat current input: $I(t) = 0.0001 A$
+Flat current input: $I(t)=0.0001 A$
 
 Model parameters:
-- $R = 1 kΩ$
-- $C = 5 µF ⇒ τ = RC = 0.005$
-- $dt = 0.1 ms$
-- $T = 50 ms$
+- $R=1 kΩ$
+- $C=5 µF ⇒ τ=RC=0.005$
+- $dt=0.1 ms$
+- $T=50 ms$
 
-Threshold values: $V_th ∈ {-70 mV, -30 mV, 10 mV}$
+Threshold values: $V_{th} ∈ {-70 mV, -30 mV, 10 mV}$
 
 ##### Results:
 
-$V_th = -70 mV$: Immediate firing, stable periodic spikes
+$V_{th}=-70 mV$: Immediate firing, stable periodic spikes
 <p align="center"><img width="731" height="405" alt="image" src="https://github.com/user-attachments/assets/988d3ee9-6a79-4619-9114-1213df519b11" /></p>
 
-$V_th = -30 mV$: First spike at $t = 2.7 ms$, periodic
+$V_{th}=-30 mV$: First spike at $t=2.7 ms$, periodic
 <p align="center"><img width="733" height="400" alt="image" src="https://github.com/user-attachments/assets/aa754770-978b-4873-a9f7-09240f057913" /></p>
 
-$V_th = 10 mV$: First spike at $t = 8.2 ms$, lower frequency
+$V_{th}=10 mV$: First spike at $t=8.2 ms$, lower frequency
 <p align="center"><img width="734" height="405" alt="image" src="https://github.com/user-attachments/assets/bb3f9c0a-ec40-498e-a25c-7ba3c729f7d5" /></p>
 
-As $V_th$ increases, firing starts later and occurs less frequently.
+As $V_{th}$ increases, firing starts later and occurs less frequently.
 
 #### Time to Reach Threshold
 
 Using:
 
-```math
-t_th = -τ · ln((V_th - u_rest)/(R · I_0))
-```
+$t_{th}=-τ · ln((V_{th} - u_{rest})/(R · I_0))$
 
 Substituting values:
-- For $V_th = -70 mV$: $t_th = 0 ms$
-- For $V_th = -30 mV$: $t_th ≈ 2.6 ms$
-- For $V_th = 10 mV$: $t_th ≈ 8.1 ms$
+- For $V_{th}=-70 mV$: $t_{th}=0 ms$
+- For $V_{th}=-30 mV$: $t_{th}≈2.6 ms$
+- For $V_{th}=10 mV$: $t_{th}≈8.1 ms$
 
 Higher threshold values result in increased time to spike.
 
@@ -215,7 +205,7 @@ Higher threshold values result in increased time to spike.
 #### Eight Firing Modes
 
 Using the guide-provided code with:
-- $dt = 0.1 ms$
+- $dt=0.1 ms$
 - Three input types: step, step with pulse, negative step
 
 Firing modes replicated:
@@ -225,35 +215,33 @@ Firing modes replicated:
 - Fast Spiking (FS)
 - Low-Threshold Spiking (LTS)
 - Resonator (RZ)
-- Thalamo-Cortical (TC) with v0 = -63
-- TC with v0 = -87
+- Thalamo-Cortical (TC) with $v_0=-63$
+- TC with $v_0=-87$
 
 ### Mode Characteristics
 
 Model equations:
 
-```math
-v' = 0.04v^2 + 5v + 140 - u + I u' = a(bv - u)
-```
+$v'=0.04v^2 + 5v + 140 - u + I u'=a(bv - u)$
 
 After spike ($v >= 30$): $v ← c$, $u ← u + d$
 
-**RS: Spike frequency adaptation due to low c and high d**
+**RS: Spike frequency adaptation due to low $c$ and high $d$**
 <p align="center"><img width="624" height="346" alt="image" src="https://github.com/user-attachments/assets/34cfd91d-6834-4569-84a5-508106245e20" /></p>
 
-**IB: Initial burst, then slower firing (c = -55, d = 4)**
+**IB: Initial burst, then slower firing ($c=-55$, $d=4$)**
 <p align="center"><img width="622" height="344" alt="image" src="https://github.com/user-attachments/assets/72443435-4a00-4294-8e8d-6c193c4906a3" /></p>
 
-**CH: High-frequency bursts (c = -50, d = 2)**
+**CH: High-frequency bursts ($c=-50$, $d=2$)**
 <p align="center"><img width="623" height="340" alt="image" src="https://github.com/user-attachments/assets/5bf87727-2c0c-49db-8ec0-fec210106f69" /></p>
 
-**FS: High constant firing due to a = 0.1**
+**FS: High constant firing due to $a=0.1$**
 <p align="center"><img width="621" height="341" alt="image" src="https://github.com/user-attachments/assets/5f0288fe-8362-4ecd-b7aa-459dd31f23e1" /></p>
 
-**LTS: Low threshold due to b = 0.25**
+**LTS: Low threshold due to $b=0.25$**
 <p align="center"><img width="624" height="346" alt="image" src="https://github.com/user-attachments/assets/73065e85-efd6-4ec1-a64b-8fe8ff6539bb" /></p>
 
-**RZ: Rebound spikes due to a = 0.1, b = 0.26**
+**RZ: Rebound spikes due to $a=0.1$, $b=0.26$**
 <p align="center"><img width="620" height="338" alt="image" src="https://github.com/user-attachments/assets/fe4d6156-9a0b-4d64-a45c-3976e50b6f05" /></p>
 
 **TC (-63): Gradual spike adaptation**
@@ -265,34 +253,32 @@ After spike ($v >= 30$): $v ← c$, $u ← u + d$
 ### Hodgkin-Huxley Model
 <p align="center"><img width="186" height="161" alt="image" src="https://github.com/user-attachments/assets/ee85000c-8559-4afa-addc-bac8a5b690b1" /></p>
 
-#### Significance of E_K, E_Na, E_leak
+#### Significance of $E_K$, $E_{Na}$, $E_{leak}$
 
 Model equation:
 
-```math
-I(t) = C_m · dV_m/dt + I_K + I_Na + I_leak
-```
+$I(t)=C_m · dV_m/dt + I_K + I_Na + I_leak$
 
 Where:
-- $I_K = g_K · n^4 · (V_m - V_K)$
-- $I_{Na} = g_{Na} · m^3 · h · (V_m - V_{Na})$
-- $I_{leak} = g_{leak} · (V_m - V_{leak})$
+- $I_K=g_K · n^4 · (V_m - V_K)$
+- $I_{Na}=g_{Na} · m^3 · h · (V_m - V_{Na})$
+- $I_{leak}=g_{leak} · (V_m - V_{leak})$
 
 Gating variables $m$, $n$, $h$ depend on voltage via $α$ and $β$ functions. The voltages $E_K$, $E_{Na}$, $E_{leak}$ determine the ion flow direction.
 
 ### Effect of $E_K$, $E_{Na}$, $E_{leak}$ on Spikes
 
-Default: $E_{Na} = 115$, $E_K = -12$, $E_{leak} = 10.6$
+Default: $E_{Na}=115$, $E_K=-12$, $E_{leak}=10.6$
 <p align="center"><img width="748" height="405" alt="image" src="https://github.com/user-attachments/assets/7b73d01c-585c-4aeb-bc0f-6e5466447da0" /></p>
 
 #### Variations:
-$E_{Na} = 180: Increased spike height
+$E_{Na}=180$: Increased spike height
 <p align="center"><img width="746" height="397" alt="image" src="https://github.com/user-attachments/assets/42a17de6-06c5-424e-b503-8dd1dbbe43bc" /></p>
 
-$E_K = 10: Reduced spike height
+$E_K=10$: Reduced spike height
 <p align="center"><img width="739" height="397" alt="image" src="https://github.com/user-attachments/assets/76a35e03-5c5e-4627-b7ba-ab1c4032002d" /></p>
 
-$E_{leak} = 0$: Reduced spike frequency
+$E_{leak}=0$: Reduced spike frequency
 <p align="center"><img width="737" height="402" alt="image" src="https://github.com/user-attachments/assets/45784ee7-e5d5-4555-8166-335475d33854" /></p>
 
 The model highlights how spike dynamics emerge from ionic mechanisms rather than explicit spike logic, illustrating its biological plausibility.
@@ -302,22 +288,12 @@ The model highlights how spike dynamics emerge from ionic mechanisms rather than
 
 </details>
 
-
-
-
-
 <details>
 <summary>The Neural Engineering Framework (NEF) </summary>
 
 ## The Neural Engineering Framework (NEF)
 
-
-
-**Submitted by:** Shlomi Ben Shoshan
-
----
-
-## 1. Data Representation via NEF
+### Data Representation via NEF
 
 The **Neural Engineering Framework (NEF)** is a computational framework designed for modeling neural systems at scale. Unlike traditional, bottom-up neural modeling, NEF adopts a top-down approach: high-level specifications of a neural network determine its low-level structure. This makes it possible to model highly complex dynamical systems.
 
@@ -337,9 +313,7 @@ These principles are implemented in **Nengo**, a Python library that provides co
 
 Together, these components allow researchers to build large-scale, biologically plausible neural simulations with clear abstractions for how information is represented, processed, and flowed.
 
----
-
-## 2. Basis Functions and Their Importance
+### Basis Functions and Their Importance
 
 In NEF, **basis functions** serve as essential tools for representing and transforming information within neural networks. They parallel the concept of basis vectors in linear algebra but apply it to function spaces.
 
@@ -355,147 +329,56 @@ In short, basis functions allow NEF to encode and decode continuous variables, p
 
 ---
 
-## 3. Why a Single Neuron Isn’t Enough
+### Why a Single Neuron Isn’t Enough
 
 Through Nengo simulations with plotted visualizations, three cases demonstrate the limitations of using just one neuron for representation:
 
-### A. High-dimensional input
-Encoding a 2D vector \(x = (0.5, 0.5)\) using a single neuron fails to reconstruct the signal. An ensemble of five neurons produces a significantly more accurate approximation, illustrating the need for multiple neurons to represent higher-dimensional vectors.
+#### A. High-dimensional input
 
-### B. Non-linear function \(f(x) = x^2\)
-For a sinusoidal input in \([-1,1]\), a single neuron cannot approximate the quadratic transformation. A fifty-neuron ensemble, however, achieves a reasonable fit, showcasing the necessity of ensembles for non-linear mappings.
+Encoding a 2D vector $x=(0.5, 0.5)$ using a single neuron fails to reconstruct the signal. An ensemble of five neurons produces a significantly more accurate approximation, illustrating the need for multiple neurons to represent higher-dimensional vectors.
 
-### C. Accurate signal reproduction
+<p align="center"><img width="730" height="390" alt="image" src="https://github.com/user-attachments/assets/4fc1c93b-b6b9-41c7-8c32-298c43735875" /></p>
+
+#### B. Non-linear function $f(x)=x^2$
+
+For a sinusoidal input in $[-1,1]$, a single neuron cannot approximate the quadratic transformation. A fifty-neuron ensemble, however, achieves a reasonable fit, showcasing the necessity of ensembles for non-linear mappings.
+
+<p align="center"><img width="819" height="617" alt="image" src="https://github.com/user-attachments/assets/8949249b-0063-446d-be7e-3e1e33c83e63" />
+</p>
+
+#### C. Accurate signal reproduction
+
 Encoding a sinusoidal signal with one, two, and one hundred neurons reveals increasing fidelity as neuron count rises. A single neuron cannot accurately follow dynamic signals, whereas many neurons provide smoother, more precise reconstruction.
 
----
+<p align="center"><img width="819" height="497" alt="image" src="https://github.com/user-attachments/assets/2431b98c-2844-48fa-b0a9-649cc61d2f9f" />
+</p>
 
-## 4. Radius: Its Role and Importance
+### Radius: Its Role and Importance
 
 The **radius** parameter defines the input scale that a neural ensemble can represent. Straying beyond this radius leads to inaccurate representation, regardless of neuron count.
 
-**Example:** Two ensembles with 100 neurons each—one with radius 1, the other with radius 1.5—receive input (1,1). The radius-1 ensemble cannot decode this input accurately, while the radius-1.5 ensemble successfully represents it. Properly setting the radius ensures ensembles capture intended input ranges.
+**Example:** Two ensembles with 100 neurons each—one with radius 1, the other with radius 1.5 - receive input $(1,1)$. The radius-1 ensemble cannot decode this input accurately, while the radius-1.5 ensemble successfully represents it. Properly setting the radius ensures ensembles capture intended input ranges.
 
----
+<p align="center"><img width="855" height="449" alt="image" src="https://github.com/user-attachments/assets/4671c738-667a-4a5f-94ed-4d38dcde0879" /></p>
 
-## 5. Tuning Curves in Nengo
+### Tuning Curves in Nengo
 
-A **tuning curve** (I–F curve) maps input current \(I\) to the neuron's firing rate \(f\). Parameters like **encoder** (preferred stimulus direction) and **intercept** (minimum input to activate the neuron) define each neuron's response in Nengo.
+A **tuning curve** (I–F curve) maps input current $I$ to the neuron's firing rate $f$. Parameters like **encoder** (preferred stimulus direction) and **intercept** (minimum input to activate the neuron) define each neuron's response in Nengo.
 
-- Example: A neuron with encoder = 1, intercept = 1, only responds when \(I \ge 1\).
-- Ensembles of 2 or 50 neurons produce distinct tuning curves, illustrating how mixed tuning patterns contribute to encoding and decoding performance. Larger ensembles with diverse tuning curves yield more accurate signal reconstruction.
+Example: A neuron with $encoder=1$, $intercept=1$, only responds when $I \ge 1$.
+<p align="center"><img width="371" height="279" alt="image" src="https://github.com/user-attachments/assets/cac50a27-1f65-425c-86f6-df4a9394cb1d" /></p>
 
----
+Ensembles of 2 or 50 neurons produce distinct tuning curves, illustrating how mixed tuning patterns contribute to encoding and decoding performance. Larger ensembles with diverse tuning curves yield more accurate signal reconstruction.
+<p align="center"><img width="857" height="226" alt="image" src="https://github.com/user-attachments/assets/e7d2daac-6f0f-4dd3-a9ff-9a9e3eb946c2" /></p>
+<p align="center"><img width="862" height="227" alt="image" src="https://github.com/user-attachments/assets/fb9b4541-8f52-4092-b962-ebe2e0b0da27" /></p>
 
-## 6. Representing \(x + \sin(x)\): 1, 10, 50, 1000 Neurons
 
-By simulating an ensemble computing \(x + \sin(x)\) with varying neuron counts (radius = 30):
+For further information on topics such as representing $x + \sin(x)$ using 1, 10, 50, and 1000 neurons, transforming data within the NEF, and exploring Nengo examples involving the transformation of three functions, [read the full Hebrew report](reports/nef.pdf).
+ It also covers when and why to use multidimensional representations, the role of dynamics in the NEF, and specific models like the 2D oscillator and ring attractor.
 
-- **1 neuron:** nearly useless, large error.
-- **10 neurons:** improves, but still poorly matches the function.
-- **50 neurons:** closer, retains main shape.
-- **1000 neurons:** very precise, though computational cost increases.
-
-Revealed the trade-off: more neurons boost accuracy at the expense of computational resources.
-
----
-
-## 7. Data Transformation in NEF
-
-In NEF, **transformation** refers to converting encoded neural representation from one form to another through synaptic weight patterns.
-
-### Two transformation modes:
-
-1. **Linear transformations** – Implemented with weight matrices, straightforward and efficient, but limited to linear mappings.
-2. **Non-linear transformations** – Use complex decoding functions and algebraic mappings; more expressive but computationally intensive and harder to optimize.
-
-Both are crucial: linear for efficiency and simplicity, non-linear for richer modeling.
-
----
-
-## 8. Nengo Examples: Transforming Three Functions
-
-Simulations demonstrate how ensembles of 10, 100, and 1000 neurons transform \(x\) into each of:
-
-- \(x^3\)
-- \(\sigma(x) = 1/(1+e^{-x})\) (sigmoid)
-- \(\max(0, -x)\) (negative ReLU)
-
-Increasing neuron count improves approximation accuracy, though some distortion persists due to static decoding error. More neurons and optimized tuning curves reduce this distortion.
-
----
-
-## 9. When and Why Multidimensional Representations
-
-Multidimensional representations are essential when modeling data with multiple interdependent variables, such as:
-
-- Spatial or temporal signals
-- Functions of several input variables
-- Sequential data (e.g., language, DNA)
-
-**Example:** Computing \(\sin(x \cdot y)\) requires representing both \(x\) and \(y\). A single-dimension ensemble would be insufficient. A 1000-neuron, 2D ensemble handles both inputs, enabling accurate nonlinear multidimensional transformations.
-
----
-
-## 10. Dynamics in NEF
-
-### A. 2D Oscillator
-
-A continuous 2D oscillator with state \(\mathbf{x} = (x_0, x_1)\) evolves according to:
-
-\[
-\frac{d}{dt}
-\begin{pmatrix}
-x_0 \\ x_1
-\end{pmatrix}
-=
-\begin{pmatrix}
-1 & r \\ -r & 1
-\end{pmatrix}
-\begin{pmatrix}
-x_0 \\ x_1
-\end{pmatrix}
-\]
-
-In Nengo, a 200‑neuron ensemble receives a brief external input, then a recurrent connection implements these dynamics. Output plots show oscillatory exchange between \(x_0\) and \(x_1\), and a phase-plane trajectory. Modulating \(r\) (or angular frequency \(\omega\)) adjusts oscillation speed.
-
----
-
-## 11. Ring Attractor via Neural Ensemble
-
-Starting from a NumPy/SciPy implementation of a 3D ring attractor, it was converted to a Nengo model with:
-
-- Input pulse to initialize \((1,0,-1)\)
-- 3000‑neuron, 3D ensemble
-- Recurrent connection implementing the attractor differential equations
-
-Results revealed several challenges:
-
-- **Accuracy**: Smoothing the trajectory required finding a sweet spot for neuron count and synaptic time constant.
-- **Start state**: Nengo ensembles always begin at zero; initial pulses were used to steer them to the desired position.
-- **Correct recurrence**: The recurrent connection must compute the *next state*, not just its derivative.
-- **Value range**: The ensemble’s radius was increased to encompass the full attractor range.
-- **Stabilization**: Using a fixed random seed ensured tuning curves remained consistent across runs, aiding parameter tuning.
-
-Despite these challenges, the Nengo-based ring attractor model produced a stable 3D limit cycle similar to mathematical expectations.
-
----
-
-## Conclusion
+### Conclusion
 
 NEF, implemented via Nengo, provides a powerful high-level toolkit for building biologically grounded neural models. By leveraging ensembles, tuning curves, and structured connectivity, it can represent, compute, and simulate dynamics ranging from simple transforms to real oscillators and attractor networks. Careful tuning of parameters—such as neuron count, radius, and synaptic time constants—is key to balancing accuracy, realism, and efficiency.
-
-
-
-
-
-
-
-
-
-
-
-
 
 </details>
 
