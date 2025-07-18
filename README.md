@@ -1,8 +1,11 @@
-<img width="739" height="397" alt="image" src="https://github.com/user-attachments/assets/0dfe9dfc-87e7-4053-ad93-c59737474e60" /># Neuromorphic Engineering 🧠
+# Neuromorphic Engineering 🧠
 
-A repository of computational neuroscience models and simulations exploring biologically inspired neural systems, with an emphasis on **spiking neural networks**, **point neuron dynamics**, and **neuromorphic computation using Nengo**.
+This repository explores **brain-inspired computing architectures** and contains computational neuroscience models and simulations exploring biologically inspired neural systems, with an emphasis on **spiking neural networks**, **point neuron dynamics**, and **neuromorphic computation** using **Nengo**.
 
-## Brain-Inspired Computing Architectures: Scientific, Architectural, and Algorithmic Perspectives  
+<details>
+<summary>Scientific, Architectural, and Algorithmic Perspectives </summary>
+
+## Scientific, Architectural, and Algorithmic Perspectives
 
 Before we dive into the project code and artifacts, let's explore the three common perspective for brain-inspired computing.
 
@@ -100,33 +103,40 @@ The study of brain-inspired computing requires a **multi-disciplinary approach**
 
 Together, they lay the groundwork for a future where artificial systems not only simulate intelligence but do so with the **efficiency, robustness, and adaptability of the human brain**.
 
-## Brain-Inspired Computing Architecture: Neuron Models
+[Read the full Hebrew report](reports/prespectives.pdf)
+
+</details>
+
+<details>
+<summary>The Neuron Models </summary>
+
+## The Neuron Models
 
 Now, let's explore three iconic neuron models.
 
 ### Leaky Integrate-and-Fire (LIF) Model
 
-#### I-F Curves and the Effect of Membrane Time Constant τ
+#### I-F Curves and the Effect of Membrane Time Constant $τ$
 
 The Leaky Integrate-and-Fire (LIF) model is an electrical-mathematical model that simulates point neuron behavior. It includes a capacitor, representing ion separation across the membrane, and a resistor, representing membrane permeability. In the absence of stimulation, the capacitor voltage exponentially decays ("leaks") to a resting potential through the resistor.
 
-<img width="121" height="160" alt="image" src="https://github.com/user-attachments/assets/60cc97f0-0a0c-4b5f-a74a-dad4bfc97d38" />
+<p align="center"><img width="121" height="160" src="https://github.com/user-attachments/assets/60cc97f0-0a0c-4b5f-a74a-dad4bfc97d38" /></p>
 
-By current conservation:
+The current conservation:
 
 ```math
 I(t) = I_R(t) + I_C(t)
 ```
 
-This leads to the model equation:
+Leads to the model equation:
 
 ```math
 τ · dV(t)/dt = R · I(t) - V(t)
 ```
 
 Where:
-- τ is the membrane time constant, defined by τ = RC.
-- V(t) is the membrane potential.
+- $τ$ is the membrane time constant, defined by $τ = RC$.
+- $V(t)$ is the membrane potential.
 
 Using the iterative method:
 
@@ -135,11 +145,11 @@ u_∞(i) = u_rest + R · I(i) u(i+1) = u_∞ + (u(i) - u_∞) · e^(-dt/τ)
 ```
 
 #### Simulation Parameters:
-- u_rest = -70 mV
-- V_th = -40 mV
-- R = 1 kΩ
-- dt = 0.1 ms
-- T = 50 ms
+- $u_rest = -70 mV$
+- $V_th = -40 mV$
+- $R = 1 kΩ$
+- $dt = 0.1 ms$
+- $T = 50 ms$
 
 We vary the current:
 
@@ -147,41 +157,43 @@ We vary the current:
 I(t_i) = dI · i, where dI = 0.5 µA
 ```
 
-##### Observations for Different τ Values:
+##### Observations for Different $τ$ Values:
 
-τ = 0.01: First spike occurs at ~94.5 µA, initial firing rate ≈ 0.18 Hz
-<img width="740" height="408" alt="image" src="https://github.com/user-attachments/assets/f8fb2c2c-51c6-420d-b0be-602f86dd5341" />
+$τ = 0.01$: First spike occurs at $~94.5 µA$, initial firing rate $≈ 0.18 Hz$
+<p align="center"><img width="740" height="408" alt="image" src="https://github.com/user-attachments/assets/f8fb2c2c-51c6-420d-b0be-602f86dd5341" /></p>
 
-τ = 0.02: Shift in the curve, first spike at ~126.5 µA, frequency ≈ 0.1351 Hz
-<img width="736" height="403" alt="image" src="https://github.com/user-attachments/assets/d485cc79-7720-4691-a55a-57120a993d13" />
+$τ = 0.02$: Shift in the curve, first spike at $~126.5 µA$, frequency $≈ 0.1351 Hz$
+<p align="center"><img width="736" height="403" alt="image" src="https://github.com/user-attachments/assets/d485cc79-7720-4691-a55a-57120a993d13" /></p>
 
-τ = 0.03: First spike at ~151 µA, frequency ≈ 0.1124 Hz
-<img width="740" height="402" alt="image" src="https://github.com/user-attachments/assets/1dcc2e0a-d99b-45c6-a1fa-8c118d23145b" />
+$τ = 0.03$: First spike at $~151 µA$, frequency $≈ 0.1124 Hz$
+<p align="center"><img width="740" height="402" alt="image" src="https://github.com/user-attachments/assets/1dcc2e0a-d99b-45c6-a1fa-8c118d23145b" /></p>
 
-Larger τ values result in lower firing frequencies for the same current due to slower membrane potential buildup.
+Larger $τ$ values result in lower firing frequencies for the same current due to slower membrane potential buildup.
 
 #### V-T Curves for Different Thresholds
 
-Flat current input: I(t) = 0.0001 A
+Flat current input: $I(t) = 0.0001 A$
 
 Model parameters:
-- R = 1 kΩ
-- C = 5 µF ⇒ τ = RC = 0.005
-- dt = 0.1 ms
-- T = 50 ms
+- $R = 1 kΩ$
+- $C = 5 µF ⇒ τ = RC = 0.005$
+- $dt = 0.1 ms$
+- $T = 50 ms$
 
-Threshold values: V_th ∈ {-70 mV, -30 mV, 10 mV}
+Threshold values: $V_th ∈ {-70 mV, -30 mV, 10 mV}$
 
 ##### Results:
-- V_th = -70 mV: Immediate firing, stable periodic spikes
-- V_th = -30 mV: First spike at t = 2.7 ms, periodic
-- V_th = 10 mV: First spike at t = 8.2 ms, lower frequency
 
-<img width="731" height="405" alt="image" src="https://github.com/user-attachments/assets/988d3ee9-6a79-4619-9114-1213df519b11" />
-<img width="733" height="400" alt="image" src="https://github.com/user-attachments/assets/aa754770-978b-4873-a9f7-09240f057913" />
-<img width="734" height="405" alt="image" src="https://github.com/user-attachments/assets/bb3f9c0a-ec40-498e-a25c-7ba3c729f7d5" />
+$V_th = -70 mV$: Immediate firing, stable periodic spikes
+<p align="center"><img width="731" height="405" alt="image" src="https://github.com/user-attachments/assets/988d3ee9-6a79-4619-9114-1213df519b11" /></p>
 
-As V_th increases, firing starts later and occurs less frequently.
+$V_th = -30 mV$: First spike at $t = 2.7 ms$, periodic
+<p align="center"><img width="733" height="400" alt="image" src="https://github.com/user-attachments/assets/aa754770-978b-4873-a9f7-09240f057913" /></p>
+
+$V_th = 10 mV$: First spike at $t = 8.2 ms$, lower frequency
+<p align="center"><img width="734" height="405" alt="image" src="https://github.com/user-attachments/assets/bb3f9c0a-ec40-498e-a25c-7ba3c729f7d5" /></p>
+
+As $V_th$ increases, firing starts later and occurs less frequently.
 
 #### Time to Reach Threshold
 
@@ -192,9 +204,9 @@ t_th = -τ · ln((V_th - u_rest)/(R · I_0))
 ```
 
 Substituting values:
-- For V_th = -70 mV: t_th = 0 ms
-- For V_th = -30 mV: t_th ≈ 2.6 ms
-- For V_th = 10 mV: t_th ≈ 8.1 ms
+- For $V_th = -70 mV$: $t_th = 0 ms$
+- For $V_th = -30 mV$: $t_th ≈ 2.6 ms$
+- For $V_th = 10 mV$: $t_th ≈ 8.1 ms$
 
 Higher threshold values result in increased time to spike.
 
@@ -203,7 +215,7 @@ Higher threshold values result in increased time to spike.
 #### Eight Firing Modes
 
 Using the guide-provided code with:
-- dt = 0.1 ms
+- $dt = 0.1 ms$
 - Three input types: step, step with pulse, negative step
 
 Firing modes replicated:
@@ -224,35 +236,34 @@ Model equations:
 v' = 0.04v^2 + 5v + 140 - u + I u' = a(bv - u)
 ```
 
-After spike (v >= 30): v ← c, u ← u + d
+After spike ($v >= 30$): $v ← c$, $u ← u + d$
 
 **RS: Spike frequency adaptation due to low c and high d**
-<img width="624" height="346" alt="image" src="https://github.com/user-attachments/assets/34cfd91d-6834-4569-84a5-508106245e20" />
+<p align="center"><img width="624" height="346" alt="image" src="https://github.com/user-attachments/assets/34cfd91d-6834-4569-84a5-508106245e20" /></p>
 
 **IB: Initial burst, then slower firing (c = -55, d = 4)**
-<img width="622" height="344" alt="image" src="https://github.com/user-attachments/assets/72443435-4a00-4294-8e8d-6c193c4906a3" />
+<p align="center"><img width="622" height="344" alt="image" src="https://github.com/user-attachments/assets/72443435-4a00-4294-8e8d-6c193c4906a3" /></p>
 
 **CH: High-frequency bursts (c = -50, d = 2)**
-<img width="623" height="340" alt="image" src="https://github.com/user-attachments/assets/5bf87727-2c0c-49db-8ec0-fec210106f69" />
+<p align="center"><img width="623" height="340" alt="image" src="https://github.com/user-attachments/assets/5bf87727-2c0c-49db-8ec0-fec210106f69" /></p>
 
 **FS: High constant firing due to a = 0.1**
-<img width="621" height="341" alt="image" src="https://github.com/user-attachments/assets/5f0288fe-8362-4ecd-b7aa-459dd31f23e1" />
+<p align="center"><img width="621" height="341" alt="image" src="https://github.com/user-attachments/assets/5f0288fe-8362-4ecd-b7aa-459dd31f23e1" /></p>
 
 **LTS: Low threshold due to b = 0.25**
-<img width="624" height="346" alt="image" src="https://github.com/user-attachments/assets/73065e85-efd6-4ec1-a64b-8fe8ff6539bb" />
+<p align="center"><img width="624" height="346" alt="image" src="https://github.com/user-attachments/assets/73065e85-efd6-4ec1-a64b-8fe8ff6539bb" /></p>
 
 **RZ: Rebound spikes due to a = 0.1, b = 0.26**
-<img width="620" height="338" alt="image" src="https://github.com/user-attachments/assets/fe4d6156-9a0b-4d64-a45c-3976e50b6f05" />
+<p align="center"><img width="620" height="338" alt="image" src="https://github.com/user-attachments/assets/fe4d6156-9a0b-4d64-a45c-3976e50b6f05" /></p>
 
 **TC (-63): Gradual spike adaptation**
-<img width="619" height="342" alt="image" src="https://github.com/user-attachments/assets/01422c90-41d8-410f-906f-001fa2faae60" />
+<p align="center"><img width="619" height="342" alt="image" src="https://github.com/user-attachments/assets/01422c90-41d8-410f-906f-001fa2faae60" /></p>
 
 **TC (-87): Burst after inhibitory input**
-<img width="629" height="338" alt="image" src="https://github.com/user-attachments/assets/4879f393-1460-46b7-8f64-1e4d56a88588" />
+<p align="center"><img width="629" height="338" alt="image" src="https://github.com/user-attachments/assets/4879f393-1460-46b7-8f64-1e4d56a88588" /></p>
 
 ### Hodgkin-Huxley Model
-
-<img width="186" height="161" alt="image" src="https://github.com/user-attachments/assets/ee85000c-8559-4afa-addc-bac8a5b690b1" />
+<p align="center"><img width="186" height="161" alt="image" src="https://github.com/user-attachments/assets/ee85000c-8559-4afa-addc-bac8a5b690b1" /></p>
 
 #### Significance of E_K, E_Na, E_leak
 
@@ -263,40 +274,44 @@ I(t) = C_m · dV_m/dt + I_K + I_Na + I_leak
 ```
 
 Where:
-- I_K = g_K · n^4 · (V_m - V_K)
-- I_Na = g_Na · m^3 · h · (V_m - V_Na)
-- I_leak = g_leak · (V_m - V_leak)
+- $I_K = g_K · n^4 · (V_m - V_K)$
+- $I_{Na} = g_{Na} · m^3 · h · (V_m - V_{Na})$
+- $I_{leak} = g_{leak} · (V_m - V_{leak})$
 
-Gating variables m, n, h depend on voltage via α and β functions. The voltages E_K, E_Na, E_leak determine the ion flow direction.
+Gating variables $m$, $n$, $h$ depend on voltage via $α$ and $β$ functions. The voltages $E_K$, $E_{Na}$, $E_{leak}$ determine the ion flow direction.
 
-### Effect of E_K, E_Na, E_leak on Spikes
+### Effect of $E_K$, $E_{Na}$, $E_{leak}$ on Spikes
 
-Default: E_Na = 115, E_K = -12, E_leak = 10.6
+Default: $E_{Na} = 115$, $E_K = -12$, $E_{leak} = 10.6$
+<p align="center"><img width="748" height="405" alt="image" src="https://github.com/user-attachments/assets/7b73d01c-585c-4aeb-bc0f-6e5466447da0" /></p>
 
 #### Variations:
-- E_Na = 180: Increased spike height
-- E_K = 10: Reduced spike height
-- E_leak = 0: Reduced spike frequency
+$E_{Na} = 180: Increased spike height
+<p align="center"><img width="746" height="397" alt="image" src="https://github.com/user-attachments/assets/42a17de6-06c5-424e-b503-8dd1dbbe43bc" /></p>
 
-<img width="748" height="405" alt="image" src="https://github.com/user-attachments/assets/7b73d01c-585c-4aeb-bc0f-6e5466447da0" />
-<img width="746" height="397" alt="image" src="https://github.com/user-attachments/assets/42a17de6-06c5-424e-b503-8dd1dbbe43bc" />
-<img width="739" height="397" alt="image" src="https://github.com/user-attachments/assets/76a35e03-5c5e-4627-b7ba-ab1c4032002d" />
-<img width="737" height="402" alt="image" src="https://github.com/user-attachments/assets/45784ee7-e5d5-4555-8166-335475d33854" />
+$E_K = 10: Reduced spike height
+<p align="center"><img width="739" height="397" alt="image" src="https://github.com/user-attachments/assets/76a35e03-5c5e-4627-b7ba-ab1c4032002d" /></p>
+
+$E_{leak} = 0$: Reduced spike frequency
+<p align="center"><img width="737" height="402" alt="image" src="https://github.com/user-attachments/assets/45784ee7-e5d5-4555-8166-335475d33854" /></p>
 
 The model highlights how spike dynamics emerge from ionic mechanisms rather than explicit spike logic, illustrating its biological plausibility.
 
 
+[Read the full Hebrew report](reports/models.pdf)
+
+</details>
 
 
 
 
 
+<details>
+<summary>The Neural Engineering Framework (NEF) </summary>
+
+## The Neural Engineering Framework (NEF)
 
 
-
-
-
-# Brain-Inspired Computation Architecture – The Neural Engineering Framework (NEF)
 
 **Submitted by:** Shlomi Ben Shoshan
 
@@ -477,6 +492,12 @@ NEF, implemented via Nengo, provides a powerful high-level toolkit for building 
 
 
 
+
+
+
+
+
+</details>
 
 
 
