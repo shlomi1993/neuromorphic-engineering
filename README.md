@@ -2,23 +2,21 @@
 
 This repository explores **brain-inspired computing architectures** and contains computational neuroscience models and simulations exploring biologically inspired neural systems, with an emphasis on **spiking neural networks**, **point neuron dynamics**, and **neuromorphic computation** using **Nengo**.
 
----
+## Neural Representation, Transformation, and Dynamics in the NEF
 
 <img width="1425" height="715" alt="Screenshot 2025-07-19 at 17 14 53" src="https://github.com/user-attachments/assets/a95a3978-6552-4c14-9c49-f77e69ad4dd7" />
 
 The figure above provides a comprehensive visualization of several fundamental concepts in the Neural Engineering Framework (NEF). It is divided into four main sections:
 
-1. **Encoding (left):** This section shows how neurons encode a signal. The top-left plot illustrates the tuning curves (firing rate vs. input value) of different neurons, each responding differently to the same input due to diverse encoders, gains, and biases. Below, a linearly increasing signal from $-1$ to $1$ is fed into the network. The resulting spike raster plot shows the spike times of 8 neurons, each with distinct firing patterns that represent the input.
+1. **Encoding (left):** Neurons encode a ramp input using diverse tuning curves. The spike raster shows how 8 neurons represent the signal through distinct firing patterns.
 
-2. **Decoding (middle-left):** Here, the spike trains from the encoding neurons are decoded to reconstruct the original signal and compute a transformation. The top plot shows the spike raster again, while the middle plot shows the decoded outputs per neuron. The bottom plot compares the original $input$ (green) and a decoded function of it $cos(input)$ (purple), demonstrating the NEF's ability to compute nonlinear transformations.
+2. **Decoding (middle-left):** Spike trains are decoded to reconstruct the input and compute a function. The output shows both the original signal and a decoded $\cos(\text{input})$.
 
-3. **Transformation (middle-right):** This part shows how spike trains can represent and transform signals. Each subpanel shows a raster plot of neuronal activity and the decoded signal. For example, panel A shows a sinusoidal input; panel B computes its negation, and panel C computes a nonlinear function (square) of B. This illustrates how NEF networks can be used to perform arbitrary mathematical transformations on encoded signals.
+3. **Transformation (middle-right):** Spikes represent and transform signals. Examples include a sinusoid, its negation, and its square—demonstrating computation via spiking activity.
 
-4. **Dynamics (right):** The top plot shows a neural implementation of an oscillatory dynamical system over time, with the two components (blue and red) representing dimensions $𝑥_1$ and $𝑥_2$. The bottom plot shows the corresponding phase portrait, forming a nearly perfect circle—demonstrating that the neural network is correctly simulating the dynamics of a circular oscillator.
+4. **Dynamics (right):** A spiking network simulates a 2D oscillator. The time plot and phase portrait confirm accurate neural simulation of circular dynamics.
 
 Overall, the figure demonstrates the core NEF principles: representing values using populations of spiking neurons, transforming those representations, and using them to simulate dynamical systems.
-
----
 
 <details>
 <summary>Scientific, Architectural, and Algorithmic Perspectives </summary>
