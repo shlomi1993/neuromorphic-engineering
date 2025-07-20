@@ -1,31 +1,28 @@
 # Neuromorphic Engineering 🧠
 
-This repository explores **brain-inspired computing architectures** and contains computational neuroscience models and simulations exploring biologically inspired neural systems, with an emphasis on **spiking neural networks**, **point neuron dynamics**, and **neuromorphic computation** using **Nengo**.
+This repository explores **brain-inspired computing architectures** and contains computational neuroscience models and simulations with a focus on:
 
-## Neural Representation, Transformation, and Dynamics in the NEF
+- **Point neuron dynamics**
+- **Spiking Neural Networks (SNNs)**
+- **Neuromorphic computation simulation using Nengo**
 
-<img width="1425" height="715" alt="Screenshot 2025-07-19 at 17 14 53" src="https://github.com/user-attachments/assets/a95a3978-6552-4c14-9c49-f77e69ad4dd7" />
+## 1. Overview: Representation, Transformation, and Dynamics in the NEF
 
-The figure above provides a comprehensive visualization of several fundamental concepts in the Neural Engineering Framework (NEF). It is divided into four main sections:
+<img width="1425" height="715" alt="Screenshot" src="https://github.com/user-attachments/assets/a95a3978-6552-4c14-9c49-f77e69ad4dd7" />
 
-1. **Encoding (left):** Neurons encode a ramp input using diverse tuning curves. The spike raster shows how 8 neurons represent the signal through distinct firing patterns.
+The figure above illustrates NEF's core principles across four stages:
 
-2. **Decoding (middle-left):** Spike trains are decoded to reconstruct the input and compute a function. The output shows both the original signal and a decoded $\cos(\text{input})$.
+1. **Encoding** – Spike trains from 8 neurons represent a ramp signal.
+2. **Decoding** – Spikes are decoded to reconstruct inputs and compute $\cos(\text{input})$.
+3. **Transformation** – Computation of $\sin(x)$, $-x$, and $x^2$ via spiking.
+4. **Dynamics** – A spiking 2D oscillator mimics circular behavior.
 
-3. **Transformation (middle-right):** Spikes represent and transform signals. Examples include a sinusoid, its negation, and its square—demonstrating computation via spiking activity.
-
-4. **Dynamics (right):** A spiking network simulates a 2D oscillator. The time plot and phase portrait confirm accurate neural simulation of circular dynamics.
-
-Overall, the figure demonstrates the core NEF principles: representing values using populations of spiking neurons, transforming those representations, and using them to simulate dynamical systems.
+## 2. Scientific, Architectural, and Algorithmic Perspectives
 
 <details>
-<summary>Scientific, Architectural, and Algorithmic Perspectives </summary>
+<summary>Click to expand</summary>
 
-## Scientific, Architectural, and Algorithmic Perspectives
-
-Before we dive into the project code and artifacts, let's explore the three common perspective for brain-inspired computing.
-
-### The Scientific Perspective
+### 2.1 The Scientific Perspective
 
 Understanding the brain requires grappling with one of the most profound challenges in science: how simple components, such as neurons, interact to form complex behaviors and cognition. A key concept in this endeavor is **emergent behavior**—a phenomenon where group-level behaviors arise from simple, local interactions among system components. This behavior is not present in individual units but emerges only at the system level.
 
@@ -38,7 +35,7 @@ This leads to one of the core challenges in neuroscience: deciding which abstrac
 
 To address this, researchers employ two dominant modeling strategies: **bottom-up** and **top-down** approaches.
 
-#### Bottom-Up vs. Top-Down Modeling
+#### 2.1.1 Bottom-Up vs. Top-Down Modeling
 
 - **Bottom-Up Modeling** starts from low-level abstractions - such as neurons and synapses - and builds upward. This method offers high **explanatory power** and **biological realism**, making it ideal for studying the origin of specific emergent behaviors. However, it is computationally expensive and often fails to scale to complex behaviors such as intelligence. For example, IBM’s 2009 simulation “The Cat is Out of the Bag” illustrates the limits of this approach in practice.
 
@@ -46,7 +43,7 @@ To address this, researchers employ two dominant modeling strategies: **bottom-u
 
 In practice, both approaches are complementary. While bottom-up models deepen our understanding, top-down models provide efficient simulations of intelligence. Importantly, both approaches require vast computational resources—highlighting the need for **neuromorphic computing** to model brain-like systems effectively.
 
-### The Computer Architecture Perspective
+### 2.2 The Computer Architecture Perspective
 
 The historical trajectory of computing is deeply influenced by **Dennard Scaling** and **Amdahl’s Law**, two principles that once drove exponential performance gains.
 
@@ -56,7 +53,7 @@ The historical trajectory of computing is deeply influenced by **Dennard Scaling
 
 Together, these principles guided the design of CPUs and parallel architectures for decades. However, today’s reality is starkly different. **Moore’s Law is considered dead**, not because innovation has stopped, but because physical and economic constraints have stalled the exponential growth in transistor performance.
 
-#### Why Moore’s Law Has Stalled
+#### 2.2.1 Why Moore’s Law Has Stalled
 
 Several factors have contributed to the slowdown:
 
@@ -73,7 +70,7 @@ Several factors have contributed to the slowdown:
 
 These realities underscore that traditional methods - smaller, faster, more transistors - are no longer viable.
 
-#### A Counterpoint: Moore’s Law is Evolving
+#### 2.2.2 A Counterpoint: Moore’s Law is Evolving
 
 Despite these limitations, some researchers argue that **Moore’s Law is evolving rather than dying**. In the article *"AI, Native Supercomputing and the Revival of Moore's Law"*, the author suggests that domain-specific architectures, especially for AI and deep learning, are enabling new forms of exponential growth.
 
@@ -81,11 +78,11 @@ Specialized AI chips, such as tensor processing units (TPUs), exploit **massive 
 
 In this view, Moore’s Law lives on—not in hardware miniaturization, but in **architectural innovation**. As Prof. Kwabena Boahen emphasizes, to maintain progress, we must pursue fundamentally different hardware models, such as those found in **neuromorphic computing**.
 
-### The Algorithmic Perspective
+### 2.3 The Algorithmic Perspective
 
 The algorithmic domain bridges the gap between models of the brain and functional artificial intelligence. At its core, this includes **artificial neural networks (ANNs)** and their biologically inspired counterpart, **spiking neural networks (SNNs)**.
 
-#### ANN vs. SNN
+#### 2.3.1 ANN vs. SNN
 
 - **ANNs** consist of layers of artificial neurons that process information using **continuous and differentiable values**. These systems are trained with backpropagation and are highly effective in pattern recognition, natural language processing, and vision tasks.
 
@@ -101,7 +98,7 @@ The algorithmic domain bridges the gap between models of the brain and functiona
 
 While ANNs dominate today's AI applications, SNNs represent a promising path for **energy-efficient, brain-like computing**. However, they require specialized hardware and training algorithms that are still maturing.
 
-#### Additional Architectures: CNNs, RNNs, and BNNs
+#### 2.3.2 Additional Architectures: CNNs, RNNs, and BNNs
 
 - **BNNs (Biological Neural Networks)** refer to real neuronal systems, such as those found in the human gut-brain axis (ENS). Research on "Brain in a Dish" experiments demonstrates the ability to simulate parts of these networks outside the human body.
 
@@ -109,7 +106,7 @@ While ANNs dominate today's AI applications, SNNs represent a promising path for
 
 - **RNNs (Recurrent Neural Networks)** are tailored for sequential data. They process time-series information and are fundamental in applications like machine translation. Notably, the *Sequence to Sequence Learning with Neural Networks* paper by Sutskever et al. (2014) introduced groundbreaking methods for sequence prediction.
 
-### Conclusion
+### 2.4 Conclusion
 
 The study of brain-inspired computing requires a **multi-disciplinary approach** spanning science, architecture, and algorithms. Each perspective brings unique insights:
 
@@ -123,16 +120,16 @@ Together, they lay the groundwork for a future where artificial systems not only
 
 </details>
 
-<details>
-<summary>The Neuron Models </summary>
+## 3. The Neuron Model
 
-## The Neuron Models
+<details>
+<summary>Click to expand</summary>
 
 Now, let's explore three iconic neuron models.
 
-### Leaky Integrate-and-Fire (LIF) Model
+### 3.1 Leaky Integrate-and-Fire (LIF) Model
 
-#### I-F Curves and the Effect of Membrane Time Constant $τ$
+#### 3.1.1 I-F Curves and the Effect of Membrane Time Constant $τ$
 
 The Leaky Integrate-and-Fire (LIF) model is an electrical-mathematical model that simulates point neuron behavior. It includes a capacitor, representing ion separation across the membrane, and a resistor, representing membrane permeability. In the absence of stimulation, the capacitor voltage exponentially decays ("leaks") to a resting potential through the resistor.
 
@@ -154,7 +151,7 @@ Using the iterative method:
 
 $u_∞(i)=u_{rest} + R · I(i) u(i+1)=u_∞ + (u(i) - u_∞) · e^(-dt/τ)$
 
-#### Simulation Parameters:
+#### 3.1.2 Simulation Parameters:
 - $u_{rest}=-70 mV$
 - $V_{th}=-40 mV$
 - $R=1 kΩ$
@@ -165,7 +162,7 @@ We vary the current:
 
 $I(t_i)=dI · i$ where $dI=0.5 µA$
 
-##### Observations for Different $τ$ Values:
+##### 3.1.2.1 Observations for Different $τ$ Values:
 
 $τ=0.01$: First spike occurs at $~94.5 µA$, initial firing rate $≈ 0.18 Hz$
 <p align="center"><img width="740" height="408" alt="image" src="https://github.com/user-attachments/assets/f8fb2c2c-51c6-420d-b0be-602f86dd5341" /></p>
@@ -178,7 +175,7 @@ $τ=0.03$: First spike at $~151 µA$, frequency $≈ 0.1124 Hz$
 
 Larger $τ$ values result in lower firing frequencies for the same current due to slower membrane potential buildup.
 
-#### V-T Curves for Different Thresholds
+#### 3.1.2.2 V-T Curves for Different Thresholds
 
 Flat current input: $I(t)=0.0001 A$
 
@@ -190,7 +187,7 @@ Model parameters:
 
 Threshold values: $V_{th} ∈ {-70 mV, -30 mV, 10 mV}$
 
-##### Results:
+##### 3.1.2.3 Results:
 
 $V_{th}=-70 mV$: Immediate firing, stable periodic spikes
 <p align="center"><img width="731" height="405" alt="image" src="https://github.com/user-attachments/assets/988d3ee9-6a79-4619-9114-1213df519b11" /></p>
@@ -203,7 +200,7 @@ $V_{th}=10 mV$: First spike at $t=8.2 ms$, lower frequency
 
 As $V_{th}$ increases, firing starts later and occurs less frequently.
 
-#### Time to Reach Threshold
+#### 3.1.3 Time to Reach Threshold
 
 Using:
 
@@ -216,9 +213,9 @@ Substituting values:
 
 Higher threshold values result in increased time to spike.
 
-### Izhikevich Model
+### 3.2 Izhikevich Model
 
-#### Eight Firing Modes
+#### 3.2.1 Eight Firing Modes
 
 Using the guide-provided code with:
 - $dt=0.1 ms$
@@ -234,7 +231,7 @@ Firing modes replicated:
 - Thalamo-Cortical (TC) with $v_0=-63$
 - TC with $v_0=-87$
 
-### Mode Characteristics
+### 3.2.2 Mode Characteristics
 
 Model equations:
 
@@ -269,7 +266,7 @@ After spike ($v >= 30$): $v ← c$, $u ← u + d$
 ### Hodgkin-Huxley Model
 <p align="center"><img width="186" height="161" alt="image" src="https://github.com/user-attachments/assets/ee85000c-8559-4afa-addc-bac8a5b690b1" /></p>
 
-#### Significance of $E_K$, $E_{Na}$, $E_{leak}$
+#### 3.2.3 Significance of $E_K$, $E_{Na}$, $E_{leak}$
 
 Model equation:
 
@@ -282,12 +279,12 @@ Where:
 
 Gating variables $m$, $n$, $h$ depend on voltage via $α$ and $β$ functions. The voltages $E_K$, $E_{Na}$, $E_{leak}$ determine the ion flow direction.
 
-### Effect of $E_K$, $E_{Na}$, $E_{leak}$ on Spikes
+#### 3.2.4 Effect of $E_K$, $E_{Na}$, $E_{leak}$ on Spikes
 
 Default: $E_{Na}=115$, $E_K=-12$, $E_{leak}=10.6$
 <p align="center"><img width="748" height="405" alt="image" src="https://github.com/user-attachments/assets/7b73d01c-585c-4aeb-bc0f-6e5466447da0" /></p>
 
-#### Variations:
+#### 3.2.5 Variations:
 $E_{Na}=180$: Increased spike height
 <p align="center"><img width="746" height="397" alt="image" src="https://github.com/user-attachments/assets/42a17de6-06c5-424e-b503-8dd1dbbe43bc" /></p>
 
@@ -299,17 +296,17 @@ $E_{leak}=0$: Reduced spike frequency
 
 The model highlights how spike dynamics emerge from ionic mechanisms rather than explicit spike logic, illustrating its biological plausibility.
 
-
 [Read the full Hebrew report](reports/models.pdf)
 
 </details>
 
+
+## 4. The Neural Engineering Framework
+
 <details>
-<summary>The Neural Engineering Framework (NEF) </summary>
+<summary>Click to expand</summary>
 
-## The Neural Engineering Framework (NEF)
-
-### Data Representation via NEF
+### 4.1 Data Representation via NEF
 
 The **Neural Engineering Framework (NEF)** is a computational framework designed for modeling neural systems at scale. Unlike traditional, bottom-up neural modeling, NEF adopts a top-down approach: high-level specifications of a neural network determine its low-level structure. This makes it possible to model highly complex dynamical systems.
 
@@ -329,13 +326,13 @@ These principles are implemented in **Nengo**, a Python library that provides co
 
 Together, these components allow researchers to build large-scale, biologically plausible neural simulations with clear abstractions for how information is represented, processed, and flowed.
 
-### Basis Functions and Their Importance
+### 4.2 Basis Functions and Their Importance
 
 In NEF, **basis functions** serve as essential tools for representing and transforming information within neural networks. They parallel the concept of basis vectors in linear algebra but apply it to function spaces.
 
 Neuron tuning curves in NEF act as a full basis for the functional space that the neurons can compute. Because each neuron responds with a characteristic tuning curve, an ensemble can represent a wide range of inputs via weighted summation of activity patterns.
 
-### Why basis functions matter:
+#### 4.2.1 Why basis functions matter:
 
 - **Efficient representation** of continuous signals using discrete spiking neurons, supporting high-dimensional and non-linear data.
 - **Neural computation**, enabling linear and non-linear transformations by mapping inputs to neural activities and decoding outputs back to values.
@@ -343,33 +340,31 @@ Neuron tuning curves in NEF act as a full basis for the functional space that th
 
 In short, basis functions allow NEF to encode and decode continuous variables, perform computations, and approximate dynamical behavior in a biologically plausible manner.
 
----
-
-### Why a Single Neuron Isn’t Enough
+### 4.3 Why a Single Neuron Isn’t Enough
 
 Through Nengo simulations with plotted visualizations, three cases demonstrate the limitations of using just one neuron for representation:
 
-#### A. High-dimensional input
+#### 4.3.1 High-dimensional input
 
 Encoding a 2D vector $x=(0.5, 0.5)$ using a single neuron fails to reconstruct the signal. An ensemble of five neurons produces a significantly more accurate approximation, illustrating the need for multiple neurons to represent higher-dimensional vectors.
 
 <p align="center"><img width="730" height="390" alt="image" src="https://github.com/user-attachments/assets/4fc1c93b-b6b9-41c7-8c32-298c43735875" /></p>
 
-#### B. Non-linear function $f(x)=x^2$
+#### 4.3.2 Non-linear function $f(x)=x^2$
 
 For a sinusoidal input in $[-1,1]$, a single neuron cannot approximate the quadratic transformation. A fifty-neuron ensemble, however, achieves a reasonable fit, showcasing the necessity of ensembles for non-linear mappings.
 
 <p align="center"><img width="819" height="617" alt="image" src="https://github.com/user-attachments/assets/8949249b-0063-446d-be7e-3e1e33c83e63" />
 </p>
 
-#### C. Accurate signal reproduction
+#### 4.3.3 Accurate signal reproduction
 
 Encoding a sinusoidal signal with one, two, and one hundred neurons reveals increasing fidelity as neuron count rises. A single neuron cannot accurately follow dynamic signals, whereas many neurons provide smoother, more precise reconstruction.
 
 <p align="center"><img width="819" height="497" alt="image" src="https://github.com/user-attachments/assets/2431b98c-2844-48fa-b0a9-649cc61d2f9f" />
 </p>
 
-### Radius: Its Role and Importance
+### 4.4 Radius: Its Role and Importance
 
 The **radius** parameter defines the input scale that a neural ensemble can represent. Straying beyond this radius leads to inaccurate representation, regardless of neuron count.
 
@@ -377,7 +372,7 @@ The **radius** parameter defines the input scale that a neural ensemble can repr
 
 <p align="center"><img width="855" height="449" alt="image" src="https://github.com/user-attachments/assets/4671c738-667a-4a5f-94ed-4d38dcde0879" /></p>
 
-### Tuning Curves in Nengo
+### 4.5 Tuning Curves in Nengo
 
 A **tuning curve** (I–F curve) maps input current $I$ to the neuron's firing rate $f$. Parameters like **encoder** (preferred stimulus direction) and **intercept** (minimum input to activate the neuron) define each neuron's response in Nengo.
 
@@ -388,22 +383,21 @@ Ensembles of 2 or 50 neurons produce distinct tuning curves, illustrating how mi
 <p align="center"><img width="857" height="226" alt="image" src="https://github.com/user-attachments/assets/e7d2daac-6f0f-4dd3-a9ff-9a9e3eb946c2" /></p>
 <p align="center"><img width="862" height="227" alt="image" src="https://github.com/user-attachments/assets/fb9b4541-8f52-4092-b962-ebe2e0b0da27" /></p>
 
-
 For further information on topics such as representing $x + \sin(x)$ using 1, 10, 50, and 1000 neurons, transforming data within the NEF, and exploring Nengo examples involving the transformation of three functions, [read the full Hebrew report](reports/nef.pdf).
  It also covers when and why to use multidimensional representations, the role of dynamics in the NEF, and specific models like the 2D oscillator and ring attractor.
 
-### Conclusion
+### 4.6 Conclusion
 
 NEF, implemented via Nengo, provides a powerful high-level toolkit for building biologically grounded neural models. By leveraging ensembles, tuning curves, and structured connectivity, it can represent, compute, and simulate dynamics ranging from simple transforms to real oscillators and attractor networks. Careful tuning of parameters—such as neuron count, radius, and synaptic time constants—is key to balancing accuracy, realism, and efficiency.
 
 </details>
 
+## 5. Project Artifacts
+
 <details>
-<summary>Project Implementation </summary>
+<summary>Click to expand</summary>
 
-## Project Implementation
-
-### Project Structure
+### 5.1 Project Structure
 
 ```
 neuromorphic-engineering/
@@ -414,7 +408,7 @@ neuromorphic-engineering/
 └── README.md
 ```
 
-### Point Neuronal Dynamic Models
+### 5.2 Point Neuronal Dynamic Models
 
 **Location**: `point_neuronal_dynamic_models/`
 
@@ -425,7 +419,7 @@ Focused on **single-compartment models** of neural spiking dynamics:
 * `HnH.py`: Hodgkin–Huxley model implementation.
 * `*_plots/`: Visualization of voltage traces and parameter variations for different models.
 
-### Morphologically Detailed Neuron Models
+### 5.3 Morphologically Detailed Neuron Models
 
 **Location**: `morphologically_detailed_neuron_models/`
 
@@ -435,32 +429,32 @@ This module contains implementations and simulations of morphologically accurate
 * `the_cable_equation.py`: Classical cable equation for dendritic voltage propagation.
 * `the_cable_equation_2.py`: A variant of the cable equation implementation.
 
-### Nengo Simulations
+### 5.4 Nengo Simulations
 
 **Location**: `nengo/`
 
 This submodule includes a wide variety of **simulations using the Nengo framework**, illustrating key concepts of neuromorphic computing and the Neural Engineering Framework (NEF).
 
-#### Highlights
+#### 5.5 Highlights
 
-##### Representation
+##### 5.5.1 Representation
 
 * `representation.py`: LIF vs. Rectified Linear tuning curves, ensemble decoding, high-dimensional analysis.
 
-##### Transformation
+##### 5.5.2 Transformation
 
 * `transformation.py`: Decoder-based function transformations (e.g., `sin(x)` to `sin²(x)`, vector sums, multiplication, gating).
 
-##### Dynamics
+##### 5.5.3 Dynamics
 
 * `dynamics.py`: Recurrent connections modeling functions like `f(x)=x+1`, `f(x)=x²`, `f(x)=-x`, integrators, oscillators, and Lorenz attractor.
 
-##### Learning and Adaptation
+##### 5.5.4 Learning and Adaptation
 
 * `pes.py`: Online learning using the PES rule in a simple communication channel.
 * `pavlovian.py`: Classical conditioning via Hebbian and PES learning mechanisms.
 
-##### Interactive Experiments
+##### 5.5.5 Interactive Experiments
 
 **Location**: `nengo/HW/`
 
@@ -470,7 +464,7 @@ This submodule includes a wide variety of **simulations using the Nengo framewor
 * High-dimensional stimuli (`high_dim_stim.py`)
 * Performance metrics & visualizations (`accuracy.py`, `radius.py`)
 
-## Spiking Neural Networks (SNN)
+## 5.6 Spiking Neural Networks (SNN)
 
 **Location**: `snn/`
 
@@ -483,10 +477,7 @@ Advanced simulations of SNNs and learning algorithms.
 
 </details>
 
-<details>
-<summary>Requirements and References </summary>
-
-## Requirements
+## 6. Requirements
 
 * Python ≥ 3.8
 * `nengo`
@@ -497,15 +488,22 @@ Advanced simulations of SNNs and learning algorithms.
 * `seaborn`
 * `scipy`
 
-## References
+## 7. References
 
-* Neural Engineering Framework (NEF)
-* Nengo: [https://www.nengo.ai](https://www.nengo.ai)
-* NengoDL: [https://www.nengo.ai/nengo-dl](https://www.nengo.ai/nengo-dl)
-* Izhikevich, E. M. (2003). Simple model of spiking neurons.
+- [Nengo](https://www.nengo.ai)
+- [NengoDL](https://www.nengo.ai/nengo-dl)
+- [Izhikevich, E. M. (2003). Simple model of spiking neurons](https://www.izhikevich.org/publications/spikes.pdf)
+- [Photinus carolinus - Wikipedia](https://en.wikipedia.org/wiki/Photinus_carolinus)
+- [Synchronous Fireflies - Firefly.org](https://www.firefly.org/synchronous-fireflies.html)
+- [Synchronous Flashing of Fireflies (JSTOR - direct PDF)](https://www-jstor-org.elib.openu.ac.il/stable/pdf/2830425.pdf)
+- [AI-Native Supercomputing and the Revival of Moore’s Law (Cambridge)](https://www.cambridge.org/core/journals/apsipa-transactions-on-signal-and-information-processing/article/ai-native-supercomputing-and-the-revival-of-moores-law/3791FFFAC8FCA71718FA360D0C8FC0D8?utm_campaign=shareaholic)
+- [AI-Native Supercomputing (EBSCOhost login)](http://elib.openu.ac.il/login?url=https://search.ebscohost.com/login.aspx?direct=true&db=a9h&AN=154960632&site=eds-live&scope=site)
+- [ArXiv: Delays and the Dynamics of Firefly Synchronization (PDF)](https://arxiv.org/pdf/1409.3215.pdf)
 
-</details>
+## Notes
 
-## Note
+This project is part of a **neuromorphic computing research portfolio**, combining neuroscience, software engineering, and simulation techniques for academic use.
 
-This project is part of a neuromorphic computing exploration portfolio for academic and research use.
+📄 [Read the full Hebrew report on Perspectives](reports/prespectives.pdf)  
+📄 [Read the full Hebrew report on Models](reports/models.pdf)  
+📄 [Read the full Hebrew report on NEF](reports/nef.pdf)
