@@ -2,6 +2,8 @@
 
 This repository explores **brain-inspired computing architectures** and contains computational neuroscience models and simulations exploring biologically inspired neural systems, with an emphasis on **spiking neural networks**, **point neuron dynamics**, and **neuromorphic computation** using **Nengo**.
 
+<img width="1425" height="715" alt="Screenshot 2025-07-19 at 17 14 53" src="https://github.com/user-attachments/assets/a95a3978-6552-4c14-9c49-f77e69ad4dd7" />
+
 <details>
 <summary>Scientific, Architectural, and Algorithmic Perspectives </summary>
 
